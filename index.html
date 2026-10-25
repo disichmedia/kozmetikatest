@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{width:100%;overflow-x:hidden}body{margin:0;background:#ffffff;color:#1f2a22;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#1f2a22;text-decoration:none}
+a:hover{color:oklch(0.5 0.08 145)}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+::-webkit-scrollbar{height:0;width:0}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;">
+
+  <div style="background:#cfe3c9;color:#23382a;font-size:12.5px;letter-spacing:.02em;text-align:center;padding:9px 16px;">{{ announce }}</div>
+
+  <header style="position:sticky;top:0;z-index:40;background:#ffffff;border-bottom:1px solid #ebe5d6;">
+    <div style="max-width:none;margin:0 auto;padding:0 clamp(16px,4vw,28px);display:flex;align-items:center;justify-content:space-between;column-gap:20px;row-gap:0;flex-wrap:{{ hdrWrap }};min-height:{{ hdrMinH }};">
+      <a href="#" style="display:flex;align-items:center;gap:10px;white-space:nowrap;line-height:1;"><svg width="22" height="28" viewBox="0 0 24 30" fill="none" style="flex:none;overflow:visible;"><g><animateTransform attributeName="transform" type="rotate" values="0 12 15;0 12 15;180 12 15" keyTimes="0;0.82;1" dur="4s" repeatCount="indefinite"></animateTransform><line x1="5" y1="3" x2="19" y2="3" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><line x1="5" y1="27" x2="19" y2="27" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><path d="M7 4 C7 10 10.5 12.5 11.3 15 C10.5 17.5 7 20 7 26 M17 4 C17 10 13.5 12.5 12.7 15 C13.5 17.5 17 20 17 26" stroke="#7fae77" stroke-width="1.3" stroke-linecap="round"></path><polygon fill="#c9b48a" points="8.2,7 15.8,7 12,14"><animate attributeName="points" values="8.2,7 15.8,7 12,14;11.6,13.4 12.4,13.4 12,14;11.6,13.4 12.4,13.4 12,14" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon><line x1="12" y1="14" x2="12" y2="25.5" stroke="#c9b48a" stroke-width="0.9" stroke-dasharray="1.2 1.2"><animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.78;0.8;1" dur="4s" repeatCount="indefinite"></animate></line><polygon fill="#c9b48a" points="11.6,25.6 12.4,25.6 12,25.2"><animate attributeName="points" values="11.6,25.6 12.4,25.6 12,25.2;8.2,25.6 15.8,25.6 12,19.5;8.2,25.6 15.8,25.6 12,19.5" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon></g></svg><span style="display:flex;flex-direction:column;gap:4px;"><span style="font-weight:700;font-size:clamp(17px,4.6vw,20px);letter-spacing:-.02em;"><span style="color:#5f8a5a;">Eko</span> Korean Beauty</span></span></a>
+      <nav style="display:flex;align-items:center;justify-content:{{ navJustify }};gap:18px;font-size:13.5px;font-weight:500;flex-wrap:nowrap;overflow-x:auto;flex:1 1 {{ navBasis }};min-width:0;order:{{ navOrder }};border-top:{{ navBorder }};scrollbar-width:none;">
+          <a href="shop.html" style="padding:{{ navPad }};white-space:nowrap;">Prodavnica</a>
+          <a href="shop.html" style="padding:{{ navPad }};white-space:nowrap;">Noviteti</a>
+          <a href="#videi" style="padding:{{ navPad }};white-space:nowrap;">Video recenzije</a>
+          <a href="#rasprodaja" style="padding:{{ navPad }};white-space:nowrap;">Rasprodaja</a>
+          <a href="#zasto" style="padding:{{ navPad }};white-space:nowrap;">O nama</a>
+          <a href="#kontakt" style="padding:{{ navPad }};white-space:nowrap;">Kontakt</a>
+        </nav>
+      <div style="display:flex;align-items:center;gap:18px;margin-left:auto;">
+        <a href="#" aria-label="Pretraga" style="display:flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></a>
+        <a href="#" aria-label="Nalog" style="display:flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+        <button type="button" onClick="{{ openCart }}" aria-label="Korpa" style="display:flex;align-items:center;gap:8px;border:0;background:none;padding:0;color:inherit;font-size:13.5px;font-weight:600;cursor:pointer;"><span style="position:relative;display:flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="8" width="16" height="13" rx="1"></rect><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"></path></svg><span style="position:absolute;top:-7px;right:-9px;min-width:17px;height:17px;border-radius:9px;background:#cfe3c9;color:#23382a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;">{{ cartCount }}</span></span><span style="margin-left:4px;">Korpa</span></button>
+      </div>
+    </div>
+
+  </header>
+
+  <main style="display:flex;flex-direction:column;">
+
+    <section style="order:1;position:relative;width:100%;aspect-ratio:16/9;max-height:90vh;background:#ffffff;overflow:hidden;">
+      <image-slot id="hero-full" shape="rect" src="assets/pink-brokoly-v5.jpg" placeholder="Hero fotografija preko cele širine (kampanja / influenser)"></image-slot>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:18%;box-sizing:border-box;pointer-events:none;">
+        <a href="shop.html" style="pointer-events:auto;height:56px;padding:0 32px;border-radius:999px;background:transparent;border:2px solid #ffffff;color:#23382a;font-size:16px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;gap:10px;" style-hover="background:rgba(255,255,255,.35);color:#23382a;">Pogledaj celu ponudu →</a>
+      </div>
+    </section>
+
+    <section id="zasto" style="order:3;max-width:none;width:100%;margin:0 auto;padding:56px 28px 0;">
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin:0 auto 34px;max-width:620px;">
+        <h2 style="margin:0;font-weight:600;font-size:28px;line-height:1.1;letter-spacing:-.02em;">Zašto Eko Korean Beauty</h2>
+        <p style="margin:0;color:#23382a;font-size:17px;font-weight:700;line-height:1.55;text-wrap:pretty;"><strong style="color:#23382a;font-weight:700;">Jedini shop sa 2-minute beauty proizvodima.</strong> Otkrij skin care proizvode za brzu beauty rutinu: kozmetika koja ti skraćuje vreme spremanja.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:{{ whyCols }};row-gap:28px;column-gap:0;padding-bottom:4px;">
+        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="6">
+          <a href="#" style="display:flex;flex-direction:column;gap:8px;padding:4px 22px 8px;border-left:1px solid #dfe9da;" style-hover="color:#5f8a5a;">
+            <span style="font-size:40px;font-weight:300;line-height:1;letter-spacing:-.04em;color:#9dbf94;font-variant-numeric:tabular-nums;margin-bottom:6px;">{{ b.n }}</span>
+            <span style="font-size:13.5px;font-weight:600;line-height:1.3;">{{ b.title }}</span>
+            <span style="font-size:12px;color:#5f675f;line-height:1.45;">{{ b.text }}</span>
+            <span style="font-size:11.5px;font-weight:600;margin-top:auto;padding-top:4px;">{{ b.link }} →</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="ponuda" style="order:5;max-width:none;width:100%;margin:0 auto;padding:72px 28px 0;">
+      <div style="display:flex;flex-wrap:wrap;background:#ffffff;border-radius:0;overflow:hidden;box-shadow:0 18px 50px -18px rgba(31,42,34,.28),0 2px 8px rgba(31,42,34,.06);">
+        <div style="position:relative;flex:1 1 min(100%,360px);min-width:0;align-self:center;aspect-ratio:2400 / 1792;background:#ffffff;">
+          <img src="assets/posebna-ponuda.jpg" alt="PINK BROKOLY set sa priručnikom na poklon" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+        </div>
+        <div style="flex:1 1 min(100%,420px);min-width:0;box-sizing:border-box;padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;justify-content:center;gap:14px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.5 0.08 145);">Šok ponuda · samo za pretplatnike</span>
+          <h2 style="margin:0;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-.025em;">Najbolja cena na sajtu, ove nedelje</h2>
+          <span style="font-size:15px;line-height:1.5;">PINK BROKOLY maska + 2 jelly gel maskice za oči + gua sha od ruževog kvarca. Na poklon: priručnik „Korejski beauty rituali“.</span>
+          <sc-if value="{{ shockLocked }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;align-items:baseline;gap:12px;">
+                <span style="font-size:28px;font-weight:700;filter:blur(7px);user-select:none;">2.490 RSD</span>
+                <span style="color:#868a80;text-decoration:line-through;font-size:14px;">4.980 RSD</span>
+              </div>
+              <p style="margin:0;color:#5f675f;font-size:14px;line-height:1.55;max-width:420px;">Prijavi se na listu za novitete i otključaj cenu. Ponuda važi dok traju zalihe.</p>
+              <form onSubmit="{{ unlockShock }}" style="display:flex;width:100%;max-width:440px;border:1px solid #9dbf94;border-radius:999px;overflow:hidden;background:#ffffff;">
+                <input type="email" required placeholder="Tvoj e-mail" style="flex:1;min-width:0;height:48px;border:0;padding:0 20px;font-size:14px;outline:none;background:#ffffff;">
+                <button type="submit" style="height:48px;padding:0 22px;border:0;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:600;">Otključaj</button>
+              </form>
+            </div>
+          </sc-if>
+          <sc-if value="{{ shockUnlocked }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
+              <div style="display:flex;align-items:baseline;gap:12px;">
+                <span style="font-size:28px;font-weight:700;color:oklch(0.5 0.08 145);">2.490 RSD</span>
+                <span style="color:#868a80;text-decoration:line-through;font-size:14px;">4.980 RSD</span>
+              </div>
+              <span style="font-size:13px;color:#5f675f;">Otključano. Prijavljena si na listu za novitete.</span>
+              <button onClick="{{ addShock }}" style="height:48px;padding:0 28px;border-radius:999px;border:0;background:#cfe3c9;color:#23382a;font-size:14px;font-weight:600;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <section id="rasprodaja" style="order:6;max-width:none;width:100%;margin:0 auto;padding:88px 28px 0;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <h2 style="margin:0;font-weight:600;font-size:36px;line-height:1.1;letter-spacing:-.02em;">Rasprodaja</h2>
+          <sc-if value="{{ showCountdown }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5f675f;">Akcija ističe za
+              <span style="display:flex;gap:6px;font-variant-numeric:tabular-nums;font-weight:600;color:#1f2a22;">
+                <span style="background:#f8f3e8;padding:4px 9px;border-radius:8px;">{{ cd.d }}d</span>
+                <span style="background:#f8f3e8;padding:4px 9px;border-radius:8px;">{{ cd.h }}h</span>
+                <span style="background:#f8f3e8;padding:4px 9px;border-radius:8px;">{{ cd.m }}m</span>
+                <span style="background:#f8f3e8;padding:4px 9px;border-radius:8px;">{{ cd.s }}s</span>
+              </span>
+            </div>
+          </sc-if>
+        </div>
+        <a href="shop.html" style="font-size:13px;font-weight:600;border-bottom:1px solid #9dbf94;padding-bottom:2px;">Pogledaj sve</a>
+      </div>
+      <div style="position:relative;">
+        <button onClick="{{ saleLeft }}" aria-label="Nazad" style="position:absolute;top:{{ saleArrowTop }};left:-6px;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:#ffffff;box-shadow:0 6px 18px -4px rgba(31,42,34,.3);font-size:18px;color:#23382a;display:{{ saleArrowDisp }};align-items:center;justify-content:center;" style-hover="background:#cfe3c9;">‹</button>
+        <button onClick="{{ saleRight }}" aria-label="Napred" style="position:absolute;top:{{ saleArrowTop }};right:-6px;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:#ffffff;box-shadow:0 6px 18px -4px rgba(31,42,34,.3);font-size:18px;color:#23382a;display:{{ saleArrowDisp }};align-items:center;justify-content:center;" style-hover="background:#cfe3c9;">›</button>
+      <div ref="{{ saleRef }}" style="display:grid;grid-auto-flow:column;grid-auto-columns:{{ saleCol }};gap:{{ saleGap }};overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;padding-bottom:4px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+          <div style="position:relative;display:flex;flex-direction:column;gap:10px;scroll-snap-align:start;min-width:0;">
+            <button onClick="{{ p.onFav }}" aria-label="Omiljeno" style="position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ p.fav }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ p.favNot }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <a href="#" style="position:relative;display:block;aspect-ratio:1/1;background:#ffffff;">
+              <span style="position:absolute;top:12px;left:12px;z-index:1;background:oklch(0.5 0.08 145);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;">{{ p.off }}</span>
+              <span style="position:absolute;inset:0;background-position:center;background-size:contain;background-repeat:no-repeat;background-image:{{ p.bg }};"></span>
+            </a>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">{{ p.brand }}</span>
+              <a href="shop.html" style="font-size:14px;line-height:1.4;min-height:40px;">{{ p.name }}</a>
+              <div style="display:flex;gap:8px;align-items:baseline;font-size:14px;margin-top:2px;">
+                <span style="font-weight:700;color:oklch(0.5 0.08 145);">{{ p.price }}</span>
+                <span style="color:#a9a593;text-decoration:line-through;font-size:12.5px;">{{ p.old }}</span>
+              </div>
+            </div>
+            <button onClick="{{ p.onAdd }}" style="height:44px;border-radius:999px;border:1px solid #9dbf94;background:#ffffff;color:#1f2a22;font-size:13px;font-weight:600;" style-hover="background:#cfe3c9;color:#23382a;">Stavi u korpu</button>
+          </div>
+        </sc-for>
+      </div>
+      </div>
+    </section>
+
+    <section id="videi" style="order:{{ videoOrder }};padding:88px 0 0;">
+      <div style="max-width:none;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.5 0.08 145);">Viralno na TikToku i Instagramu</span>
+          <h2 style="margin:0;font-weight:600;font-size:36px;line-height:1.1;letter-spacing:-.02em;">Šta kažu vaši omiljeni influenseri</h2>
+        </div>
+      </div>
+      <div style="position:relative;max-width:760px;margin:0 auto;padding:0 clamp(12px,4vw,28px);box-sizing:border-box;">
+        <button onClick="{{ scrollLeft }}" aria-label="Nazad" style="position:absolute;top:38%;left:0;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:#ffffff;box-shadow:0 6px 18px -4px rgba(31,42,34,.3);font-size:18px;color:#23382a;display:flex;align-items:center;justify-content:center;" style-hover="background:#cfe3c9;">‹</button>
+        <button onClick="{{ scrollRight }}" aria-label="Napred" style="position:absolute;top:38%;right:0;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:#ffffff;box-shadow:0 6px 18px -4px rgba(31,42,34,.3);font-size:18px;color:#23382a;display:flex;align-items:center;justify-content:center;" style-hover="background:#cfe3c9;">›</button>
+      <div ref="{{ railRef }}" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 0 6px;scrollbar-width:none;">
+        <sc-for list="{{ videos }}" as="v" hint-placeholder-count="6">
+          <div style="flex:0 0 calc((100% - 24px) / 3);min-width:0;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start;">
+            <button onClick="{{ v.onOpen }}" style="position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;padding:0;background:repeating-linear-gradient(135deg,#faf6ec 0 10px,#f4eee0 10px 20px);border-radius:18px;text-align:left;overflow:hidden;" style-hover="opacity:.92;">
+              <span style="position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:5px;background:rgba(31,42,34,.78);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;">▶ {{ v.views }}</span>
+              <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-size:16px;color:#1f2a22;box-shadow:0 4px 18px rgba(0,0,0,.08);">▶</span>
+                            <span style="position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-direction:column;gap:3px;">
+                <span style="font-size:12px;font-weight:700;color:#1f2a22;">{{ v.handle }}</span>
+                <span style="font-size:12px;line-height:1.35;color:#3c4a3f;">{{ v.caption }}</span>
+              </span>
+            </button>
+            <div style="display:flex;align-items:center;gap:10px;">
+                            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;">
+                <span style="font-size:12.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ v.product }}</span>
+                <span style="font-size:12.5px;font-weight:700;">{{ v.price }}</span>
+              </div>
+              <button onClick="{{ v.onAdd }}" aria-label="Dodaj u korpu" style="flex:none;width:34px;height:34px;border-radius:50%;border:1px solid #9dbf94;background:#ffffff;font-size:17px;line-height:1;" style-hover="background:#cfe3c9;color:#23382a;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:block;margin:auto;"><rect x="4" y="8" width="16" height="13" rx="1"></rect><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"></path></svg></button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      </div>
+    </section>
+
+    <section style="order:8;max-width:none;width:100%;margin:0 auto;padding:88px 28px 0;">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.5 0.08 145);">Kupovina pouzećem</span>
+        <h2 style="margin:0;font-weight:600;font-size:36px;line-height:1.1;letter-spacing:-.02em;">Naruči za 30 sekundi, plati kad stigne</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:8px;padding:22px;background:#ffffff;border:0;border-radius:0;box-shadow:0 14px 36px -16px rgba(31,42,34,.25),0 2px 6px rgba(31,42,34,.05);"><span style="width:30px;height:30px;border-radius:50%;background:#cfe3c9;color:#23382a;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</span><span style="font-size:15px;font-weight:600;">Klikni „Naruči”</span><span style="font-size:13px;color:#5f675f;line-height:1.5;">Na bilo kom proizvodu ili video recenziji.</span></div>
+        <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:8px;padding:22px;background:#ffffff;border:0;border-radius:0;box-shadow:0 14px 36px -16px rgba(31,42,34,.25),0 2px 6px rgba(31,42,34,.05);"><span style="width:30px;height:30px;border-radius:50%;background:#cfe3c9;color:#23382a;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span style="font-size:15px;font-weight:600;">Upiši ime, telefon i adresu</span><span style="font-size:13px;color:#5f675f;line-height:1.5;">Bez registracije i bez kartice.</span></div>
+        <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:8px;padding:22px;background:#ffffff;border:0;border-radius:0;box-shadow:0 14px 36px -16px rgba(31,42,34,.25),0 2px 6px rgba(31,42,34,.05);"><span style="width:30px;height:30px;border-radius:50%;background:#cfe3c9;color:#23382a;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span><span style="font-size:15px;font-weight:600;">Plati kuriru pri preuzimanju</span><span style="font-size:13px;color:#5f675f;line-height:1.5;">Isporuka za 1–2 dana, besplatno preko 3.000 RSD.</span></div>
+        <a href="shop.html" style="flex:1 1 180px;min-height:120px;border:0;border-radius:0;background:#cfe3c9;color:#23382a;font-size:17px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px;text-align:center;text-decoration:none;box-shadow:0 14px 36px -16px rgba(31,42,34,.3),0 2px 6px rgba(31,42,34,.06);" style-hover="background:#bcd6b4;color:#23382a;"><span>Naruči odmah →</span><span style="font-size:12.5px;font-weight:500;line-height:1.4;max-width:220px;">Naruči u narednih 24h i važi ti akcija koja je trenutno u toku.</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="kontakt" style="margin-top:96px;background:#ffffff;border-top:1px solid #ebe5d6;">
+  <div style="position:relative;max-width:none;margin:0 auto;padding:56px 28px 110px;display:flex;flex-wrap:wrap;align-items:center;gap:32px;">
+    <img src="assets/sticker-vidimo.png" alt="Vidimo se opet!" style="order:2;flex:0 0 auto;margin-left:auto;width:clamp(160px,18vw,240px);height:auto;transform:rotate(-6deg);mix-blend-mode:multiply;pointer-events:none;">
+    <div style="order:1;flex:1 1 640px;max-width:860px;display:flex;flex-wrap:wrap;gap:36px 32px;align-items:flex-start;">
+      <div style="flex:1.4 1 220px;display:flex;flex-direction:column;gap:14px;">
+        <span style="display:flex;align-items:flex-end;font-weight:700;font-size:22px;letter-spacing:-.03em;line-height:1;height:38px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid #e0d8c6;box-sizing:content-box;"><svg width="22" height="28" viewBox="0 0 24 30" fill="none" style="flex:none;margin-right:8px;overflow:visible;"><g><animateTransform attributeName="transform" type="rotate" values="0 12 15;0 12 15;180 12 15" keyTimes="0;0.82;1" dur="4s" repeatCount="indefinite"></animateTransform><line x1="5" y1="3" x2="19" y2="3" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><line x1="5" y1="27" x2="19" y2="27" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><path d="M7 4 C7 10 10.5 12.5 11.3 15 C10.5 17.5 7 20 7 26 M17 4 C17 10 13.5 12.5 12.7 15 C13.5 17.5 17 20 17 26" stroke="#7fae77" stroke-width="1.3" stroke-linecap="round"></path><polygon fill="#c9b48a" points="8.2,7 15.8,7 12,14"><animate attributeName="points" values="8.2,7 15.8,7 12,14;11.6,13.4 12.4,13.4 12,14;11.6,13.4 12.4,13.4 12,14" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon><line x1="12" y1="14" x2="12" y2="25.5" stroke="#c9b48a" stroke-width="0.9" stroke-dasharray="1.2 1.2"><animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.78;0.8;1" dur="4s" repeatCount="indefinite"></animate></line><polygon fill="#c9b48a" points="11.6,25.6 12.4,25.6 12,25.2"><animate attributeName="points" values="11.6,25.6 12.4,25.6 12,25.2;8.2,25.6 15.8,25.6 12,19.5;8.2,25.6 15.8,25.6 12,19.5" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon></g></svg><span style="color:#5f8a5a;">Eko</span>&nbsp;Korean Beauty</span>
+        <span style="font-size:13.5px;color:#5f675f;line-height:1.65;max-width:260px;text-wrap:pretty;">Kozmetika koja ti štedi vreme spremanja. Korejske maske, LED i alati na prirodnoj bazi. Dostava širom Srbije.</span>
+        <div style="display:flex;gap:8px;font-size:12.5px;font-weight:600;">
+          <a href="#" style="height:36px;padding:0 16px;border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;">Instagram</a>
+          <a href="#" style="height:36px;padding:0 16px;border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;">TikTok</a>
+        </div>
+      </div>
+      <div style="flex:1 1 130px;display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1f2a22;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid #e0d8c6;height:38px;box-sizing:content-box;display:flex;align-items:flex-end;">Info</span>
+          <button onClick="{{ infoFaq }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Česta pitanja</button>
+          <button onClick="{{ infoRet }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Povraćaj</button>
+          <button onClick="{{ infoLoy }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Program lojalnosti</button>
+          <button onClick="{{ infoCon }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Kontakt</button>
+        </div>
+        <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1f2a22;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid #e0d8c6;height:38px;box-sizing:content-box;display:flex;align-items:flex-end;">Kontakt</span>
+          <div style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">E-mail</span><a href="mailto:info@ekokoreanbeauty.rs" style="font-size:14px;line-height:1.4;color:#23382a;font-weight:600;">info@ekokoreanbeauty.rs</a></div>
+          <div style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">Telefon / Viber</span><a href="tel:+381641234567" style="font-size:14px;line-height:1.4;color:#23382a;font-weight:600;">+381 64 123 4567</a></div>
+          <div style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">Centrala</span><span style="font-size:14px;line-height:1.4;color:#23382a;font-weight:600;">Bulevar kralja Aleksandra 128, 11000 Beograd</span></div>
+        </div>
+    </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:80;background:rgba(20,18,17,.55);display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div onClick="{{ stop }}" style="position:relative;display:flex;gap:0;background:#ffffff;border-radius:22px;max-height:calc(100vh - 48px);max-width:760px;width:100%;flex-wrap:wrap;overflow:auto;">
+        <div style="position:relative;flex:1 1 300px;aspect-ratio:9/16;max-height:calc(100vh - 48px);background:repeating-linear-gradient(135deg,#faf6ec 0 10px,#f4eee0 10px 20px);border-radius:18px;">
+          <div style="position:absolute;top:12px;left:12px;right:12px;height:2px;background:rgba(31,42,34,.15);">
+            <div style="height:100%;background:#1f2a22;width:{{ progress }}%;"></div>
+          </div>
+          <span style="position:absolute;top:26px;left:12px;font-size:12px;font-weight:700;">{{ mv.handle }}</span>
+          <span style="position:absolute;top:26px;right:12px;font-size:11px;font-weight:600;color:#5f675f;">▶ {{ mv.views }}</span>
+          <span style="position:absolute;top:50%;left:0;right:0;text-align:center;font:11px ui-monospace,Menlo,monospace;color:#a9a593;">influencer video 9:16</span>
+          <span style="position:absolute;left:14px;right:14px;bottom:16px;font-size:13px;line-height:1.4;color:#3c4a3f;">{{ mv.caption }}</span>
+          <button onClick="{{ prevVideo }}" aria-label="Prethodni" style="position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(0,0,0,.1);">←</button>
+        </div>
+        <div style="flex:1 1 260px;padding:28px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a8f86;">Proizvod iz videa</span>
+          <div style="aspect-ratio:1/1;background:repeating-linear-gradient(135deg,#fbf7ee 0 10px,#f6f0e3 10px 20px);border-radius:18px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;font:11px ui-monospace,Menlo,monospace;color:#a9a593;">product shot</div>
+          <span style="font-size:16px;line-height:1.4;font-weight:500;">{{ mv.product }}</span>
+          <span style="font-size:16px;font-weight:700;">{{ mv.price }}</span>
+          <button onClick="{{ mv.onAdd }}" style="height:48px;border-radius:999px;border:0;background:#cfe3c9;color:#23382a;font-size:14px;font-weight:600;margin-top:auto;" style-hover="background:#3a3533;">Stavi u korpu</button>
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#5f675f;">
+            <span>{{ modalPos }}</span>
+            <button onClick="{{ nextVideo }}" style="border:0;background:none;padding:0;font-size:12.5px;font-weight:600;color:#1f2a22;">Sledeći video →</button>
+          </div>
+        </div>
+        <button onClick="{{ closeModal }}" aria-label="Zatvori" style="position:absolute;top:10px;right:10px;width:34px;height:34px;border:0;background:#ffffff;font-size:18px;">✕</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ orderOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;right:20px;top:84px;z-index:95;width:min(400px,calc(100vw - 40px));max-height:calc(100vh - 110px);overflow-y:auto;overflow-x:hidden;box-sizing:border-box;background:#ffffff;border:1px solid #e0d8c6;border-radius:22px 6px 22px 22px;box-shadow:0 24px 60px -20px rgba(31,42,34,.35);padding:22px;display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:16px;font-weight:700;">Korpa ({{ cartCount }})</span>
+        <button onClick="{{ closeOrder }}" aria-label="Zatvori" style="width:32px;height:32px;border:0;border-radius:50%;background:#f4eee0;font-size:15px;">✕</button>
+      </div>
+      <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;padding:4px 0 6px;">
+          <span style="font-size:14px;color:#5f675f;">Korpa je prazna.</span>
+          <a href="shop.html" style="height:42px;padding:0 20px;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;display:flex;align-items:center;">Idi u shop</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ orderForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitOrder }}" style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+          <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="1">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:#fbf7ee;border-radius:14px;min-width:0;">
+              <span style="flex:none;width:52px;height:52px;border-radius:50%;overflow:hidden;border:1px solid #e0d8c6;background-color:#ffffff;background-position:center;background-size:cover;background-repeat:no-repeat;background-image:{{ ci.bg }};"></span>
+              <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;"><span style="font-size:13px;line-height:1.3;">{{ ci.name }}</span><span style="font-size:12px;color:#868a80;">{{ ci.price }} / kom</span><button type="button" onClick="{{ ci.onRemove }}" style="align-self:flex-start;border:0;background:none;padding:0;font-size:11.5px;color:#868a80;text-decoration:underline;cursor:pointer;">Ukloni</button></div>
+              <div style="display:flex;align-items:center;gap:6px;"><button type="button" onClick="{{ ci.onDec }}" style="width:28px;height:28px;border:1px solid #e0d8c6;border-radius:50%;background:#ffffff;">−</button><span style="min-width:14px;text-align:center;font-weight:700;font-size:13px;">{{ ci.qty }}</span><button type="button" onClick="{{ ci.onInc }}" style="width:28px;height:28px;border:1px solid #e0d8c6;border-radius:50%;background:#ffffff;">+</button></div>
+            </div>
+          </sc-for>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:4px 4px 2px;font-size:13px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:#5f675f;">Proizvodi ({{ cartCount }} kom)</span><span>{{ lineTotal }}</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:#5f675f;">Dostava PTT (Post Express)</span><span>{{ shipLabel }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:8px;margin-top:2px;border-top:1px solid #ebe5d6;"><span style="font-weight:700;">Ukupno za plaćanje</span><span style="font-size:18px;font-weight:700;">{{ grandTotal }}</span></div>
+          </div>
+          <input type="text" required placeholder="Ime i prezime" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <input type="tel" required placeholder="Broj telefona" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <input type="text" required placeholder="Adresa (ulica i broj)" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <input type="text" required placeholder="Grad i poštanski broj" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#eef5ea;border-radius:12px;font-size:12.5px;line-height:1.45;color:#23382a;"><span style="font-weight:700;">₍✓₎</span><span>Plaćanje pouzećem, kuriru pri preuzimanju. Isporuka 1–2 radna dana.</span></div>
+          <button type="submit" style="height:48px;border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:14px;font-weight:700;" style-hover="background:#bcd6b4;">Završi naručivanje</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ orderDone }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;padding:8px 0;">
+          <span style="width:44px;height:44px;border-radius:50%;background:#cfe3c9;color:#23382a;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;">✓</span>
+          <span style="font-size:18px;font-weight:700;">Porudžbina je primljena</span>
+          <span style="font-size:13.5px;color:#5f675f;line-height:1.5;">Pozvaćemo te radi potvrde. Plaćaš kuriru kad paket stigne.</span>
+          <button onClick="{{ closeOrder }}" style="height:42px;padding:0 20px;border:1px solid #9dbf94;border-radius:999px;background:#ffffff;font-size:13px;font-weight:600;white-space:nowrap;">Nastavi kupovinu</button>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ giftOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeGift }}" style="position:fixed;inset:0;z-index:97;background:rgba(31,42,34,.55);display:flex;align-items:center;justify-content:center;padding:20px;">
+    <div onClick="{{ stop }}" style="width:min(720px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#ffffff;border-radius:26px;display:flex;flex-wrap:wrap;box-shadow:0 40px 80px -30px rgba(0,0,0,.45);">
+    <div style="position:relative;flex:1 1 280px;min-height:280px;background:#f7f1e3;">
+      <img src="assets/gift-basket.jpg" alt="Korpa sa proizvodima" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <span style="position:absolute;top:18px;left:18px;height:34px;padding:0 14px;border-radius:999px;background:#23382a;color:#ffffff;font-size:14px;font-weight:700;display:flex;align-items:center;pointer-events:none;">−10%</span>
+    </div>
+    <div style="flex:1 1 300px;box-sizing:border-box;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.5 0.08 145);padding-top:8px;">Poklon za tebe</span>
+        <button onClick="{{ closeGift }}" aria-label="Zatvori" style="flex:none;width:32px;height:32px;border:0;border-radius:50%;background:#f4eee0;font-size:15px;">✕</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+          <span style="font-size:24px;font-weight:700;line-height:1.1;letter-spacing:-.02em;">Poklon kod za 10% popusta</span>
+          <span style="font-size:22px;font-weight:700;letter-spacing:.12em;padding:10px 18px;border:1px dashed #5f8a5a;border-radius:12px;background:#eef5ea;color:#23382a;">EKO10</span>
+          <span style="font-size:13px;color:#5f675f;line-height:1.5;">Upiši kod u napomenu pri porudžbini.</span>
+          <button onClick="{{ giftToOrder }}" style="height:42px;padding:0 20px;border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;white-space:nowrap;">Naruči sa popustom</button>
+        </div>
+    </div>
+    </div>
+    </div>
+  </sc-if>
+
+  <button onClick="{{ toggleGift }}" style="position:fixed;left:20px;bottom:24px;z-index:94;height:64px;min-width:180px;padding:0 40px;justify-content:center;border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:17px;font-weight:700;letter-spacing:.01em;box-shadow:0 18px 40px -8px rgba(31,42,34,.45),0 4px 12px rgba(31,42,34,.18);display:flex;align-items:center;gap:10px;" style-hover="background:#bcd6b4;">Poklon</button>
+
+  <sc-if value="{{ promoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePromo }}" style="position:fixed;inset:0;z-index:97;background:rgba(31,42,34,.55);display:flex;align-items:center;justify-content:center;padding:20px;">
+      <div onClick="{{ stop }}" style="position:relative;width:min(760px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#ffffff;border-radius:26px;display:flex;flex-wrap:wrap;box-shadow:0 40px 80px -30px rgba(0,0,0,.45);">
+        <div style="position:relative;flex:1 1 300px;min-height:300px;background:#f7f1e3;">
+          <img src="assets/hero-v2.jpg" alt="Slika akcije / seta" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+          <span style="position:absolute;top:18px;left:18px;height:34px;padding:0 14px;border-radius:999px;background:#23382a;color:#ffffff;font-size:14px;font-weight:700;display:flex;align-items:center;pointer-events:none;">−50%</span>
+        </div>
+        <div style="flex:1 1 300px;padding:32px 28px 28px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:oklch(0.5 0.08 145);">Akcija važi 24h</span>
+          <span style="font-size:28px;font-weight:700;line-height:1.08;letter-spacing:-.02em;">Pola cene na set koji svi traže</span>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#fbf7ee;border:1px solid #ebe5d6;border-radius:16px;">
+            <span style="flex:none;width:48px;height:48px;border-radius:50%;border:1px solid #e0d8c6;background:repeating-linear-gradient(135deg,#fbf7ee 0 6px,#f4eee0 6px 12px);"></span>
+            <div style="display:flex;flex-direction:column;gap:3px;flex:1;min-width:0;">
+              <span style="font-size:13.5px;line-height:1.3;">Mini LED maska za oči + gua sha od ruževog kvarca</span>
+              <span style="display:flex;gap:8px;align-items:baseline;"><span style="font-size:16px;font-weight:700;">2.490 RSD</span><span style="font-size:12.5px;color:#868a80;text-decoration:line-through;">4.980 RSD</span></span>
+            </div>
+          </div>
+          <span style="font-size:13px;color:#5f675f;line-height:1.5;">Plaćanje pouzećem, isporuka 1–2 dana preko PTT-a.</span>
+          <button onClick="{{ promoToOrder }}" style="height:50px;margin-top:auto;border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;" style-hover="background:#bcd6b4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="8" width="16" height="13" rx="1"></rect><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"></path></svg>Dodaj u korpu i naruči</button>
+        </div>
+        <button onClick="{{ closePromo }}" aria-label="Zatvori" style="position:absolute;top:14px;right:14px;width:38px;height:38px;border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(0,0,0,.12);font-size:16px;">✕</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ infoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeInfo }}" style="position:fixed;inset:0;z-index:98;background:rgba(31,42,34,.4);display:flex;align-items:center;justify-content:center;padding:20px;">
+      <div onClick="{{ stop }}" style="position:relative;width:min(460px,100%);max-height:calc(100vh - 40px);overflow-y:auto;box-sizing:border-box;background:#ffffff;border-radius:22px;box-shadow:0 30px 70px -25px rgba(0,0,0,.4);padding:28px;display:flex;flex-direction:column;gap:16px;">
+        <button onClick="{{ closeInfo }}" aria-label="Zatvori" style="position:absolute;top:14px;right:14px;width:34px;height:34px;border:0;border-radius:50%;background:#f1f5ef;font-size:15px;">✕</button>
+        <span style="font-size:22px;font-weight:700;letter-spacing:-.02em;padding-right:40px;">{{ info.title }}</span>
+        <div style="display:flex;flex-direction:column;">
+          <sc-for list="{{ info.items }}" as="it" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-top:1px solid #edf1ea;">
+              <span style="font-size:14px;font-weight:700;color:#23382a;">{{ it.h }}</span>
+              <span style="font-size:13.5px;color:#5f675f;line-height:1.55;">{{ it.t }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:90;background:#cfe3c9;color:#23382a;font-size:13px;padding:13px 22px;border-radius:999px;display:flex;gap:14px;align-items:center;box-shadow:0 8px 30px rgba(0,0,0,.18);">
+      <span>{{ toastText }}</span>
+      <button type="button" onClick="{{ openCart }}" style="border:0;background:none;padding:0;color:#23382a;font-weight:700;border-bottom:1px solid #23382a;font-size:13px;cursor:pointer;">Korpa ({{ cartCount }})</button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;videoPlacement&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Posle rasprodaje&quot;,&quot;Odmah posle hero&quot;],&quot;default&quot;:&quot;Posle rasprodaje&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showCountdown&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { cart: 0, toast: null, menu: null, modal: null, progress: 0, ann: 0, now: Date.now(), subscribed: false, shock: false, orderOpen: false, orderItem: null, orderDone: false, qty: 1 };
+  railRef = React.createRef();
+  saleRef = React.createRef();
+  saleEnd = Date.now() + (2 * 86400 + 14 * 3600 + 22 * 60) * 1000;
+
+  products = [
+    { brand: 'Mini LED', name: 'LED maska za ispod očiju · crvena svetlost', price: '3.490 RSD', old: '4.990 RSD', off: '−30%', tag: '5,2M pregleda', img: 'assets/sale-led.jpg' },
+    { brand: 'Korejske maske', name: 'Kolagen hidrogel maska · set 4 kom', price: '1.990 RSD', old: '2.490 RSD', off: '−20%', tag: 'Viralno', img: 'assets/sale-hydrogel.jpg' },
+    { brand: 'Gua sha', name: 'Gua sha od ruževog kvarca', price: '1.590 RSD', old: '1.990 RSD', off: '−20%', tag: 'Bestseler', img: 'assets/sale-guasha.jpg' },
+    { brand: 'Masažeri', name: 'EMS masažer za lice sa toplotom', price: '4.290 RSD', old: '5.490 RSD', off: '−22%', tag: 'Viralno', img: 'assets/sale-ems.jpg' },
+    { brand: 'Roleri', name: 'Dupli roler od žada', price: '1.390 RSD', old: '1.690 RSD', off: '−18%', tag: '2,1M pregleda' },
+    { brand: 'Korejske maske', name: 'Centela umirujuće sheet maske · 10 kom', price: '1.790 RSD', old: '2.190 RSD', off: '−18%', tag: 'Bestseler' }
+  ];
+
+  newProducts = [
+    { brand: 'Mini LED', name: 'Mini LED flasteri za oči · 3 svetla', price: '3.990 RSD', tag: 'Trend' },
+    { brand: 'LED masažeri', name: 'LED roler za lice · crveno + plavo svetlo', price: '2.890 RSD', tag: '1,9M pregleda' },
+    { brand: 'Gua sha', name: 'Gua sha od ametista sa zarezom', price: '1.790 RSD', tag: 'Novo' },
+    { brand: 'Korejske maske', name: 'Noćna maska sa pirinčem i probioticima', price: '1.490 RSD', tag: 'Viralno' },
+    { brand: 'Roleri', name: 'Ledeni roler od kristala za jutarnje otoke', price: '1.690 RSD', tag: 'Trend' },
+    { brand: 'Masažeri', name: 'Mikrostrujni masažer za podizanje lica', price: '5.990 RSD', tag: 'Novo u Srbiji' }
+  ];
+
+  videos = [
+    { handle: '@milica.skin', views: '5,2M', caption: 'Mini LED ispod očiju 10 min dnevno — posle 2 nedelje', product: 'Mini LED maska za oči', price: '3.490 RSD' },
+    { handle: '@glowsasa', views: '1,4M', caption: 'Kolagen maska preko noći, jutro posle 😮', product: 'Kolagen hidrogel maska', price: '1.990 RSD' },
+    { handle: '@jelena.beauty', views: '890K', caption: 'Gua sha tehnika za oticanje u 3 poteza', product: 'Gua sha od ruževog kvarca', price: '1.590 RSD' },
+    { handle: '@ana.routine', views: '3,2M', caption: 'EMS masažer — da li zaista podiže konture?', product: 'EMS masažer za lice', price: '4.290 RSD' },
+    { handle: '@teodora.mua', views: '640K', caption: 'Ledeni roler pre šminke, test', product: 'Ledeni kristalni roler', price: '1.690 RSD' },
+    { handle: '@kosa.i.koza', views: '1,7M', caption: 'LED roler: crveno ili plavo svetlo?', product: 'LED roler za lice', price: '2.890 RSD' },
+    { handle: '@nina.glow', views: '520K', caption: 'Sheet maska + roler od žada = spa kod kuće', product: 'Dupli roler od žada', price: '1.390 RSD' },
+    { handle: '@vanjaskincare', views: '980K', caption: 'Moja večernja rutina sa korejskim maskama', product: 'Centela sheet maske · 10 kom', price: '1.790 RSD' }
+  ];
+
+  menus = {
+    Maske: [
+      { title: 'Korejske maske', links: ['Sheet maske', 'Hidrogel maske', 'Kolagen maske', 'Noćne maske', 'Maske za oči'] },
+      { title: 'Po potrebi', links: ['Hidratacija', 'Umirivanje', 'Sjaj', 'Pore', 'Anti-age'] }
+    ],
+    'LED i masažeri': [
+      { title: 'LED', links: ['Mini LED za oči', 'LED maske za lice', 'LED roleri', 'LED masažeri'] },
+      { title: 'Masažeri', links: ['EMS masažeri', 'Mikrostrujni', 'Sa toplotom', 'Vibracioni'] }
+    ],
+    'Gua sha i roleri': [
+      { title: 'Gua sha spatule', links: ['Ružin kvarc', 'Žad', 'Ametist', 'Obsidijan'] },
+      { title: 'Roleri', links: ['Roleri od žada', 'Roleri od kvarca', 'Ledeni roleri', 'Setovi'] }
+    ]
+  };
+
+  componentDidMount() {
+    try { const c = JSON.parse(localStorage.getItem('ekb-cart') || '[]'); if (Array.isArray(c)) this.setState({ items: c }); } catch (e) {}
+    this.onStore = (e) => { if (e.key === 'ekb-cart') { try { this.setState({ items: JSON.parse(e.newValue || '[]') }); } catch (er) {} } };
+    window.addEventListener('storage', this.onStore);
+    this.onResize = () => { const m = window.innerWidth < 760; if (m !== this.state.mob) this.setState({ mob: m }); };
+    this.onResize(); window.addEventListener('resize', this.onResize);
+    this.promoT = setTimeout(() => { try { if (sessionStorage.getItem('ekb-promo-seen')) return; sessionStorage.setItem('ekb-promo-seen', '1'); } catch (e) {} if (!this.state.orderOpen && !this.state.giftOpen) this.setState({ promoOpen: true }); }, 4000);
+    this.tick = setInterval(() => this.setState(s => ({ now: Date.now(), ann: Math.floor(Date.now() / 4000) % 2 })), 1000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.onStore);
+    window.removeEventListener('resize', this.onResize);
+    clearTimeout(this.promoT); clearInterval(this.tick); clearInterval(this.play); clearTimeout(this.tt); }
+
+  add = (name) => {
+    this.setState(s => ({ cart: s.cart + 1, toast: name }));
+    clearTimeout(this.tt);
+    this.tt = setTimeout(() => this.setState({ toast: null }), 2600);
+  };
+
+  toggleFav = (k) => this.setState(st => ({ favs: { ...(st.favs || {}), [k]: !(st.favs || {})[k] } }));
+
+  infoData = {
+    faq: { title: 'Česta pitanja', items: [
+      { h: 'Kako plaćam?', t: 'Pouzećem, kuriru pri preuzimanju paketa. Nije potrebna kartica ni registracija.' },
+      { h: 'Koliko traje dostava?', t: 'Isporuka je 1–2 radna dana preko Post Expressa. Porudžbine do 14h šaljemo isti dan.' },
+      { h: 'Koliko košta dostava?', t: '390 RSD, a besplatna je za porudžbine preko 3.000 RSD.' },
+      { h: 'Da li su proizvodi originalni?', t: 'Da. Sve nabavljamo direktno od proverenih distributera korejske kozmetike.' }
+    ] },
+    ret: { title: 'Povraćaj', items: [
+      { h: 'Rok za povraćaj', t: '14 dana od prijema paketa, bez navođenja razloga.' },
+      { h: 'Uslovi', t: 'Proizvod mora biti neotvoren i u originalnom pakovanju. Otvorene maske ne možemo primiti iz higijenskih razloga.' },
+      { h: 'Kako vraćam?', t: 'Pošalji nam poruku sa brojem porudžbine, a mi organizujemo preuzimanje. Novac vraćamo u roku od 5 dana.' }
+    ] },
+    loy: { title: 'Program lojalnosti', items: [
+      { h: '5% nazad u poenima', t: 'Za svaku kupovinu dobijaš poene u vrednosti od 5% iznosa porudžbine.' },
+      { h: 'Kako koristim poene?', t: 'Poeni se automatski oduzimaju od sledeće porudžbine. 1 poen = 100 RSD.' },
+      { h: 'Rođendanski poklon', t: 'Članovi liste dobijaju poklon na rođendan.' }
+    ] },
+    con: { title: 'Kontakt', items: [
+      { h: 'E-mail', t: 'info@ekokoreanbeauty.rs' },
+      { h: 'Telefon / Viber', t: '+381 64 123 4567, radnim danima 9–17h' },
+      { h: 'Instagram i TikTok', t: '@ekokoreanbeauty, odgovaramo na poruke istog dana.' }
+    ] }
+  };
+
+  imgFor = (name) => { const n = String(name).toLowerCase(); const m = [['pink brokoly','assets/posebna-ponuda.jpg'],['posebna','assets/posebna-ponuda.jpg'],['šok','assets/posebna-ponuda.jpg'],['mini led','assets/sale-led.jpg'],['led maska za ispod','assets/sale-led.jpg'],['hidrogel maska','assets/sale-hydrogel.jpg'],['kolagen','assets/sale-hydrogel.jpg'],['centela','assets/shop-centella.jpg'],['lampa','assets/shop-lamp.jpg'],['flasteri','assets/shop-eyepatch.jpg'],['celo lice','assets/shop-ledmask.jpg'],['led roler','assets/shop-ledroller.jpg'],['žad','assets/shop-jade.jpg'],['gua sha','assets/sale-guasha.jpg'],['ems','assets/sale-ems.jpg']]; const f = m.find(([k]) => n.includes(k)); return f ? f[1] : ''; };
+
+  saveCart = (items) => { try { localStorage.setItem('ekb-cart', JSON.stringify(items)); } catch (e) {} };
+  setItems = (fn) => this.setState(st => { const items = fn(st.items || []); this.saveCart(items); return { items }; });
+  order = (name, price, img) => {
+    if (!name) { this.setState({ giftOpen: false, promoOpen: false, orderOpen: true, orderDone: false }); return; }
+    const im = img || this.imgFor(name);
+    this.setItems(items => { const i = items.findIndex(x => x.name === name); if (i >= 0) return items.map((x, j) => j === i ? { ...x, qty: Math.min(9, x.qty + 1) } : x); return [...items, { name, price, img: im, qty: 1 }]; });
+    this.setState({ toast: 'Dodato u korpu: ' + name, q: '' });
+    clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: null }), 2800);
+  };
+
+  openVideo = (i) => {
+    clearInterval(this.play);
+    this.setState({ modal: i, progress: 0 });
+    this.play = setInterval(() => {
+      this.setState(s => {
+        if (s.modal === null) return null;
+        if (s.progress >= 100) return { modal: (s.modal + 1) % this.videos.length, progress: 0 };
+        return { progress: s.progress + 1.25 };
+      });
+    }, 100);
+  };
+  closeModal = () => { clearInterval(this.play); this.setState({ modal: null }); };
+  scrollEl = (ref, dir) => { const el = ref.current; if (!el) return; const c = el.firstElementChild; const step = c ? c.getBoundingClientRect().width + 12 : 200; const max = el.scrollWidth - el.clientWidth - 2; if (dir > 0 && el.scrollLeft >= max) el.scrollTo({ left: 0, behavior: 'smooth' }); else if (dir < 0 && el.scrollLeft <= 2) el.scrollTo({ left: max, behavior: 'smooth' }); else el.scrollBy({ left: dir * step, behavior: 'smooth' }); };
+  scroll = (dir) => { const el = this.railRef.current; if (!el) return; const c = el.firstElementChild; const step = c ? c.getBoundingClientRect().width + 12 : 200; const max = el.scrollWidth - el.clientWidth - 2; if (dir > 0 && el.scrollLeft >= max) el.scrollTo({ left: 0, behavior: 'smooth' }); else if (dir < 0 && el.scrollLeft <= 2) el.scrollTo({ left: max, behavior: 'smooth' }); else el.scrollBy({ left: dir * step, behavior: 'smooth' }); };
+
+  renderVals() {
+    const s = this.state;
+    const left = Math.max(0, this.saleEnd - s.now) / 1000;
+    const pad = n => String(Math.floor(n)).padStart(2, '0');
+    const mvRaw = s.modal !== null ? this.videos[s.modal] : null;
+    const placement = this.props.videoPlacement ?? 'Posle rasprodaje';
+    return {
+      announce: s.ann ? 'Besplatna dostava za porudžbine preko 3.000 RSD' : '10% popusta na prvu porudžbinu uz kod EKO10',
+      cartCount: (s.items || []).reduce((a, x) => a + x.qty, 0),
+      openCart: () => this.setState({ orderOpen: true, orderDone: false, giftOpen: false, promoOpen: false, toast: null }),
+      cartEmpty: !s.orderDone && !(s.items || []).length,
+      cartItems: (s.items || []).map((x, i) => ({ ...x, bg: x.img ? 'url("' + x.img + '")' : 'none', onInc: () => this.setItems(it => it.map((y, j) => j === i ? { ...y, qty: Math.min(9, y.qty + 1) } : y)), onDec: () => this.setItems(it => it.map((y, j) => j === i ? { ...y, qty: Math.max(1, y.qty - 1) } : y)), onRemove: () => this.setItems(it => it.filter((y, j) => j !== i)) })),
+      navMenus: Object.keys(this.menus).map(k => ({ label: k, onEnter: () => this.setState({ menu: k }) })),
+      menuOpen: !!s.menu,
+      menuCols: s.menu ? this.menus[s.menu] : [],
+      closeMenu: () => this.setState({ menu: null }),
+      benefits: [
+        { n: '01', title: 'Samo viralni hitovi', text: 'Maske, LED uređaji i alati koje su testirali najbolji beauty blogeri za vas.', link: 'Viralni hitovi' },
+        { n: '02', title: 'Prirodno kamenje', text: 'Gua sha i roleri od pravog kvarca, žada i ametista.', link: 'O nama' },
+        { n: '03', title: 'Besplatna dostava', text: 'Za porudžbine preko 3.000 RSD, širom Srbije.', link: 'Uslovi' },
+        { n: '04', title: 'Isporuka za 1–2 dana', text: 'Pošiljke šaljemo istog dana do 14h.', link: 'Dostava' },
+        { n: '05', title: 'Poeni za svaku kupovinu', text: '5% vrednosti vraćamo kao poene za sledeću porudžbinu.', link: 'Program lojalnosti' },
+        { n: '06', title: 'Poklon kartica', text: 'Za svaki povod, u iznosu koji izabereš.', link: 'Izaberi iznos' }
+      ],
+      showCountdown: this.props.showCountdown ?? true,
+      cd: { d: pad(left / 86400), h: pad((left % 86400) / 3600), m: pad((left % 3600) / 60), s: pad(left % 60) },
+      products: this.products.slice(0, 4).map(p => ({ ...p, bg: p.img ? 'url("' + p.img + '")' : 'none', fav: !!(s.favs || {})[p.name], favNot: !(s.favs || {})[p.name], onFav: () => this.toggleFav(p.name), onAdd: () => this.order(p.name, p.price) })),
+      videoOrder: placement === 'Odmah posle hero' ? 2 : 7,
+      newProducts: this.newProducts.map(p => ({ ...p, onAdd: () => this.order(p.name, p.price) })),
+      shockLocked: !s.shock,
+      shockUnlocked: s.shock,
+      unlockShock: e => { e.preventDefault(); this.setState({ shock: true }); },
+      addShock: () => this.order('Posebna ponuda: PINK BROKOLY set + priručnik na poklon', '2.490 RSD'),
+      railRef: this.railRef,
+      saleRef: this.saleRef,
+      saleLeft: () => this.scrollEl(this.saleRef, -1),
+      saleRight: () => this.scrollEl(this.saleRef, 1),
+      saleCol: s.mob ? 'calc((100% - 12px) / 2)' : 'minmax(200px,1fr)',
+      shockImgH: s.mob ? '240px' : '340px',
+      saleArrowDisp: s.mob ? 'flex' : 'none',
+      saleGap: s.mob ? '12px' : '20px',
+      saleArrowTop: s.mob ? '28%' : '35%',
+      whyCols: s.mob ? 'repeat(2,minmax(0,1fr))' : 'repeat(6,minmax(0,1fr))',
+      scrollLeft: () => this.scroll(-1),
+      scrollRight: () => this.scroll(1),
+      videos: this.videos.map((v, i) => ({ ...v, onOpen: () => this.openVideo(i), onAdd: () => this.order(v.product, v.price) })),
+      modalOpen: !!mvRaw,
+      mv: mvRaw ? { ...mvRaw, onAdd: () => { this.closeModal(); this.order(mvRaw.product, mvRaw.price); } } : {},
+      modalPos: mvRaw ? (s.modal + 1) + ' / ' + this.videos.length : '',
+      progress: s.progress,
+      closeModal: this.closeModal,
+      stop: e => e.stopPropagation(),
+      nextVideo: () => this.openVideo((s.modal + 1) % this.videos.length),
+      prevVideo: () => this.openVideo((s.modal - 1 + this.videos.length) % this.videos.length),
+      giftOpen: s.giftOpen,
+      giftForm: !s.giftDone,
+      giftDone: !!s.giftDone,
+      toggleGift: () => this.setState(st => ({ giftOpen: !st.giftOpen, orderOpen: false })),
+      closeGift: () => this.setState({ giftOpen: false }),
+      submitGift: e => { e.preventDefault(); this.setState({ giftDone: true }); },
+      giftToOrder: () => { this.setState({ giftOpen: false }); this.order(null); },
+      ...(() => {
+        const line = (s.items || []).reduce((a, x) => a + (parseInt(String(x.price).replace(/\D/g, ''), 10) || 0) * x.qty, 0);
+        const ship = line >= 3000 || !line ? 0 : 390;
+        const fmt = n => n.toLocaleString('de-DE') + ' RSD';
+        return { lineTotal: fmt(line), shipLabel: ship ? fmt(ship) : 'Besplatno', grandTotal: fmt(line + ship) };
+      })(),
+      promoOpen: !!s.promoOpen,
+      openPromo: () => this.setState({ promoOpen: true, giftOpen: false, orderOpen: false }),
+      closePromo: () => this.setState({ promoOpen: false }),
+      promoToOrder: () => { this.setState({ promoOpen: false }); this.order('Mini LED maska za oči + gua sha set (−50%)', '2.490 RSD'); },
+      infoOpen: !!s.info,
+      info: this.infoData[s.info] || { title: '', items: [] },
+      infoFaq: () => this.setState({ info: 'faq' }),
+      infoRet: () => this.setState({ info: 'ret' }),
+      infoLoy: () => this.setState({ info: 'loy' }),
+      infoCon: () => this.setState({ info: 'con' }),
+      closeInfo: () => this.setState({ info: null }),
+      hdrWrap: s.mob ? 'wrap' : 'nowrap',
+      navPad: s.mob ? '12px 0' : '22px 0',
+      hdrMinH: s.mob ? '60px' : '72px',
+      navJustify: s.mob ? 'flex-start' : 'center',
+      navBasis: s.mob ? '100%' : '0%',
+      navOrder: s.mob ? 3 : 0,
+      navBorder: s.mob ? '1px solid #ebe5d6' : '0',
+      orderOpen: s.orderOpen,
+      orderQuery: s.q || '',
+      onQuery: e => this.setState({ q: e.target.value }),
+      ...(() => {
+        const q = (s.q || '').trim().toLowerCase();
+        const all = [...this.newProducts, ...this.products];
+        const res = q ? all.filter(p => (p.brand + ' ' + p.name).toLowerCase().includes(q)).slice(0, 6) : [];
+        return {
+          searchResults: res.map(p => ({ ...p, onPick: () => this.order(p.name, p.price) })),
+          hasResults: res.length > 0,
+          noResults: !!q && res.length === 0
+        };
+      })(),
+      orderHasItem: !!s.orderItem,
+      orderHasImg: !!(s.orderItem && s.orderItem.img),
+      orderBg: s.orderItem && s.orderItem.img ? 'url("' + s.orderItem.img + '")' : 'none',
+      orderItem: s.orderItem || {},
+      qty: s.qty,
+      incQty: () => this.setState(st => ({ qty: Math.min(9, st.qty + 1) })),
+      decQty: () => this.setState(st => ({ qty: Math.max(1, st.qty - 1) })),
+      orderDone: s.orderDone,
+      orderForm: !s.orderDone && !!(s.items || []).length,
+      submitOrder: e => { e.preventDefault(); this.saveCart([]); this.setState({ orderDone: true, items: [] }); },
+      closeOrder: () => this.setState({ orderOpen: false }),
+      openOrderBlank: () => this.order(null),
+      toastOn: !!s.toast,
+      toastText: s.toast,
+      subscribed: s.subscribed,
+      subscribe: e => { e.preventDefault(); this.setState({ subscribed: true }); },
+      footerCols: [
+        { title: 'Info', links: ['Dostava i plaćanje', 'Povraćaj', 'Program lojalnosti', 'Kontakt', 'Blog'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{width:100%;overflow-x:hidden}body{margin:0;background:#ffffff;color:#1f2a22;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#1f2a22;text-decoration:none}
+a:hover{color:oklch(0.5 0.08 145)}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+::-webkit-scrollbar{height:0;width:0}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#ffffff;">
+
+  <div style="background:#cfe3c9;color:#23382a;font-size:12.5px;letter-spacing:.02em;text-align:center;padding:9px 16px;">{{ announce }}</div>
+
+  <header style="position:sticky;top:0;z-index:40;background:#ffffff;border-bottom:1px solid #ebe5d6;">
+    <div style="max-width:none;margin:0 auto;padding:0 clamp(16px,4vw,28px);display:flex;align-items:center;justify-content:space-between;column-gap:20px;row-gap:0;flex-wrap:{{ hdrWrap }};min-height:{{ hdrMinH }};">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;white-space:nowrap;line-height:1;"><svg width="22" height="28" viewBox="0 0 24 30" fill="none" style="flex:none;overflow:visible;"><g><animateTransform attributeName="transform" type="rotate" values="0 12 15;0 12 15;180 12 15" keyTimes="0;0.82;1" dur="4s" repeatCount="indefinite"></animateTransform><line x1="5" y1="3" x2="19" y2="3" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><line x1="5" y1="27" x2="19" y2="27" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><path d="M7 4 C7 10 10.5 12.5 11.3 15 C10.5 17.5 7 20 7 26 M17 4 C17 10 13.5 12.5 12.7 15 C13.5 17.5 17 20 17 26" stroke="#7fae77" stroke-width="1.3" stroke-linecap="round"></path><polygon fill="#c9b48a" points="8.2,7 15.8,7 12,14"><animate attributeName="points" values="8.2,7 15.8,7 12,14;11.6,13.4 12.4,13.4 12,14;11.6,13.4 12.4,13.4 12,14" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon><line x1="12" y1="14" x2="12" y2="25.5" stroke="#c9b48a" stroke-width="0.9" stroke-dasharray="1.2 1.2"><animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.78;0.8;1" dur="4s" repeatCount="indefinite"></animate></line><polygon fill="#c9b48a" points="11.6,25.6 12.4,25.6 12,25.2"><animate attributeName="points" values="11.6,25.6 12.4,25.6 12,25.2;8.2,25.6 15.8,25.6 12,19.5;8.2,25.6 15.8,25.6 12,19.5" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon></g></svg><span style="display:flex;flex-direction:column;gap:4px;"><span style="font-weight:700;font-size:clamp(17px,4.6vw,20px);letter-spacing:-.02em;"><span style="color:#5f8a5a;">Eko</span> Korean Beauty</span></span></a>
+      <nav style="display:flex;align-items:center;justify-content:{{ navJustify }};gap:18px;font-size:13.5px;font-weight:500;flex-wrap:nowrap;overflow-x:auto;flex:1 1 {{ navBasis }};min-width:0;order:{{ navOrder }};border-top:{{ navBorder }};scrollbar-width:none;">
+          <a href="shop.html" style="padding:{{ navPad }};white-space:nowrap;color:#5f8a5a;font-weight:600;">Prodavnica</a>
+          <a href="shop.html" style="padding:{{ navPad }};white-space:nowrap;">Noviteti</a>
+          <a href="index.html#videi" style="padding:{{ navPad }};white-space:nowrap;">Video recenzije</a>
+          <a href="index.html#rasprodaja" style="padding:{{ navPad }};white-space:nowrap;">Rasprodaja</a>
+          <a href="index.html#zasto" style="padding:{{ navPad }};white-space:nowrap;">O nama</a>
+          <a href="#kontakt" style="padding:{{ navPad }};white-space:nowrap;">Kontakt</a>
+        </nav>
+      <div style="display:flex;align-items:center;gap:18px;margin-left:auto;">
+        <a href="#" aria-label="Pretraga" style="display:flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></a>
+        <a href="#" aria-label="Nalog" style="display:flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+        <button type="button" onClick="{{ openCart }}" aria-label="Korpa" style="display:flex;align-items:center;gap:8px;border:0;background:none;padding:0;color:inherit;font-size:13.5px;font-weight:600;cursor:pointer;"><span style="position:relative;display:flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="8" width="16" height="13" rx="1"></rect><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"></path></svg><span style="position:absolute;top:-7px;right:-9px;min-width:17px;height:17px;border-radius:9px;background:#cfe3c9;color:#23382a;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;">{{ cartCount }}</span></span><span style="margin-left:4px;">Korpa</span></button>
+      </div>
+    </div>
+
+  </header>
+
+  <main style="display:flex;flex-direction:column;">
+    <section style="max-width:none;width:100%;margin:0 auto;padding:56px 28px 0;display:flex;flex-direction:column;gap:20px;">
+      <div style="display:grid;grid-template-columns:{{ shopHeadCols }};align-items:end;gap:16px;margin-top:-32px;margin-bottom:32px;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span style="font-size:12px;color:#868a80;"><a href="index.html" style="color:#868a80;">Početna</a> / Prodavnica</span>
+        <h1 style="margin:0;font-weight:600;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.03em;">Shop</h1>
+      </div>
+      <div style="position:relative;max-width:380px;width:100%;justify-self:center;margin-bottom:2px;">
+        <div style="display:flex;align-items:center;gap:6px;height:46px;padding:0 4px 0 18px;border:1px solid #9dbf94;border-radius:999px;background:#ffffff;box-shadow:0 10px 30px -18px rgba(31,42,34,.35);box-sizing:border-box;">
+          <input type="text" value="{{ orderQuery }}" onChange="{{ onQuery }}" placeholder="Pretraži proizvode…" style="flex:1;min-width:0;height:100%;border:0;outline:none;background:transparent;font-size:13.5px;color:#23382a;">
+          <img src="assets/search-jar.jpg" alt="" style="flex:none;width:40px;height:40px;object-fit:contain;mix-blend-mode:multiply;">
+        </div>
+        <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:0;right:0;top:52px;z-index:30;display:flex;flex-direction:column;background:#ffffff;border:1px solid #e0d8c6;border-radius:18px;box-shadow:0 20px 50px -20px rgba(31,42,34,.35);overflow:hidden;max-height:320px;overflow-y:auto;">
+            <sc-for list="{{ searchResults }}" as="r" hint-placeholder-count="3">
+              <button type="button" onClick="{{ r.onPick }}" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border:0;border-bottom:1px solid #f1ebdd;background:#ffffff;text-align:left;font-size:14px;cursor:pointer;" style-hover="background:#eef5ea;">
+                <span style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">{{ r.brand }}</span><span style="line-height:1.3;">{{ r.name }}</span></span>
+                <span style="flex:none;font-weight:700;">{{ r.price }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <span style="position:absolute;left:20px;top:54px;font-size:13px;color:#868a80;">Nema rezultata za tu pretragu.</span>
+        </sc-if>
+      </div>
+      <span></span>
+      </div>
+      <nav style="display:flex;gap:{{ catGap }};flex-wrap:{{ catWrap }};align-items:flex-start;">
+        <div style="flex:{{ catFlex }};min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:{{ catSize }};height:{{ catSize }};border-radius:50%;overflow:hidden;background:#ffffff;"><img src="assets/sale-hydrogel.jpg" alt="Maske za lice i lampa" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <a href="#maske" style="white-space:{{ catWs }};min-height:{{ catLblH }};padding:{{ catLblPad }};border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;font-size:{{ catLblFs }};font-weight:600;">Vlažne maske za lice (sheets)</a>
+        </div>
+        <div style="flex:{{ catFlex }};min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:{{ catSize }};height:{{ catSize }};border-radius:50%;overflow:hidden;background:#ffffff;"><img src="assets/shop-eyepatch.jpg" alt="Ice i jelly maskice" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <a href="#oci" style="white-space:{{ catWs }};min-height:{{ catLblH }};padding:{{ catLblPad }};border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;font-size:{{ catLblFs }};font-weight:600;">Ice i jelly maskice</a>
+        </div>
+        <div style="flex:{{ catFlex }};min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:{{ catSize }};height:{{ catSize }};border-radius:50%;overflow:hidden;background:#ffffff;"><img src="assets/shop-ledmask.jpg" alt="LED uređaji" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <a href="#led" style="white-space:{{ catWs }};min-height:{{ catLblH }};padding:{{ catLblPad }};border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;font-size:{{ catLblFs }};font-weight:600;">LED uređaji</a>
+        </div>
+        <div style="flex:{{ catFlex }};min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="width:{{ catSize }};height:{{ catSize }};border-radius:50%;overflow:hidden;background:#ffffff;"><img src="assets/shop-jade.jpg" alt="Roleri i masažne sprave" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <a href="#roleri" style="white-space:{{ catWs }};min-height:{{ catLblH }};padding:{{ catLblPad }};border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;font-size:{{ catLblFs }};font-weight:600;">Roleri i masažne sprave</a>
+        </div>
+      </nav>
+    </section>
+    <section id="maske" style="max-width:none;width:100%;margin:0 auto;padding:64px 28px 0;scroll-margin-top:90px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid #ebe5d6;">
+        <h2 style="margin:0;font-weight:600;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Vlažne maske za lice</h2>
+        <span style="font-size:13.5px;color:#5f675f;max-width:420px;">Brza nega kod kuće: vlažne maske za jednu večer.</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:{{ gridGap }};">
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav11 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav11 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav11Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-pinkbrokoly.jpg" alt="Fotografija: PINK BROKOLY maska" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Najprodavanije</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">PINK BROKOLY couple za petominutno delovanje</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Naša najprodavanija maska na bazi brokolija, pitaje i jagode. Deluje za samo 5 minuta: koža je sveža, mekana i sjajna. U pakovanju su 3 vlažne sheet maske i krema koja se nanosi pre maske za brže delovanje.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">1.890 RSD</span>
+              <button onClick="{{ pick11 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav0 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav0 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav0Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/sale-hydrogel.jpg" alt="Fotografija: Kolagen hidrogel maska · set 4 kom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Korejske maske</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Kolagen hidrogel maska · set 4 kom</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Providna hidrogel maska koja se stapa sa kožom preko noći. Ujutru je koža zategnuta i sjajna.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">1.990 RSD</span>
+              <button onClick="{{ pick0 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav1 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav1 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav1Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-centella.jpg" alt="Fotografija: Centela sheet maske · 10 kom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Korejske maske</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Centela sheet maske · 10 kom</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Umirujuće maske sa centelom za crvenilo i iritacije. 15 minuta, bez ispiranja.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">1.790 RSD</span>
+              <button onClick="{{ pick1 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+      </div>
+    </section>
+    <section id="oci" style="max-width:none;width:100%;margin:0 auto;padding:64px 28px 0;scroll-margin-top:90px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid #ebe5d6;">
+        <h2 style="margin:0;font-weight:600;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Ice i jelly maske za oči</h2>
+        <span style="font-size:13.5px;color:#5f675f;max-width:420px;">Jelly gel maskice koje se tope na koži, a najbolje deluju kada se prethodno prohlade u frižideru. Skidaju otok i umor ispod očiju za 10 minuta.</span>
+      </div>
+      <div style="display:flex;flex-wrap:{{ rowWrap }};gap:{{ gridGap }};">
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav3 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav3 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav3Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-icejelly.jpg" alt="Fotografija: Ice jelly maska za oči" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Ice maske</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Ice jelly maska za oči</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Gel maska koja se drži u frižideru i hladi kao kocka leda. Za 10 minuta skida otok i umor ispod očiju, bez svetla i punjenja.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">1.490 RSD</span>
+              <button onClick="{{ pick3 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav4 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav4 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav4Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-eyepatch.jpg" alt="Fotografija: Hidrogel flasteri za oči · 60 kom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Jelly maske</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Hidrogel flasteri za oči · 60 kom</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Jelly gel flasteri sa hijaluronom. Drže se u frižideru, pa hlade kao led i brzo skidaju otok.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">2.240 RSD</span>
+              <button onClick="{{ pick4 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav12 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav12 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav12Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-goldjelly.jpg" alt="Gold jelly maskice za oči · 60 kom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Jelly maske</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Gold jelly maskice za oči · 60 kom</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Jelly maskice sa zlatnim česticama za sjaj i čvršću kožu ispod očiju. Tope se na koži, a najbolje deluju prohlađene.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">2.490 RSD</span>
+              <button onClick="{{ pick12 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav13 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav13 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav13Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-alojelly.jpg" alt="Aloe jelly maskice za oči · 60 kom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Jelly maske</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Aloe jelly maskice za oči · 60 kom</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Umirujuće jelly maskice sa aloe verom za osetljivu kožu i otok. Drži ih u frižideru za jači efekat.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">2.190 RSD</span>
+              <button onClick="{{ pick13 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+      </div>
+    </section>
+    <section id="led" style="max-width:none;width:100%;margin:0 auto;padding:64px 28px 0;scroll-margin-top:90px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid #ebe5d6;">
+        <h2 style="margin:0;font-weight:600;font-size:28px;line-height:1.15;letter-spacing:-.02em;">LED uređaji sa svetlom</h2>
+        <span style="font-size:13.5px;color:#5f675f;max-width:420px;">Samo uređaji i maske sa LED svetlom: svetlosna terapija za akne, ten, podočnjake i čvrstinu kože.</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:{{ gridGap }};">
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav5 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav5 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav5Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-ledmask.jpg" alt="Fotografija: LED maska za celo lice · 7 boja" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">LED uređaj</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">LED maska za celo lice · 7 boja</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Sedam talasnih dužina za akne, ujednačen ten i čvrstinu. Lagana silikonska maska, bežična.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">9.990 RSD</span>
+              <button onClick="{{ pick5 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav6 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav6 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav6Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-lamp.jpg" alt="LED stona lampa za lice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">LED uređaj</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">LED stona lampa za lice</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Stona lampa sa crvenim i plavim svetlom za tretman dok sediš. Tri režima i tajmer od 10 minuta.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">6.990 RSD</span>
+              <button onClick="{{ pick6 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav10 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav10 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav10Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/sale-led.jpg" alt="Fotografija: Mini LED maska za oči" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">LED uređaj</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Mini LED maska za oči</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Crvena svetlost ispod očiju protiv podočnjaka i sitnih bora. 10 minuta dnevno, punjenje preko USB-C.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">3.490 RSD</span>
+              <button onClick="{{ pick10 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+      </div>
+    </section>
+    <section id="roleri" style="max-width:none;width:100%;margin:0 auto;padding:64px 28px 0;scroll-margin-top:90px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid #ebe5d6;">
+        <h2 style="margin:0;font-weight:600;font-size:28px;line-height:1.15;letter-spacing:-.02em;">Roleri i masažne sprave</h2>
+        <span style="font-size:13.5px;color:#5f675f;max-width:420px;">Prirodno kamenje koje se hladi u frižideru i uređaji za otok, cirkulaciju i konture.</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:{{ gridGap }};">
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav7 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav7 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav7Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/shop-jade.jpg" alt="Fotografija: Dupli roler od žada" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Roleri</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Dupli roler od žada</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Prirodni žad: veći valjak za lice, manji za oči. Drži ga u frižideru, hladan roler bolje deluje i brže skida otok.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">1.390 RSD</span>
+              <button onClick="{{ pick7 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav8 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav8 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav8Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/sale-guasha.jpg" alt="Fotografija: Gua sha od ruževog kvarca" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Gua sha</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">Gua sha od ruževog kvarca</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Ručno polirana spatula za limfnu drenažu i oblikovanje kontura lica.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">1.590 RSD</span>
+              <button onClick="{{ pick8 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+          <div style="position:relative;flex:1 1 {{ cardBasis }};max-width:{{ cardMax }};display:flex;flex-direction:{{ cardDir }};gap:{{ cardGap }};align-items:{{ cardAlign }};">
+            <button onClick="{{ tfav9 }}" aria-label="Omiljeno" style="position:absolute;top:{{ heartTop }};right:{{ heartRight }};left:{{ heartLeft }};z-index:2;width:{{ heartSize }};height:{{ heartSize }};border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(31,42,34,.12);display:flex;align-items:center;justify-content:center;color:#5f8a5a;" style-hover="background:#eef5ea;">
+              <sc-if value="{{ fav9 }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5f8a5a" stroke="#5f8a5a" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+              <sc-if value="{{ fav9Not }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.6c0 5.7-7.5 10.3-7.5 10.3z"></path></svg></sc-if>
+            </button>
+            <div style="position:relative;flex:none;width:{{ cardImgW }};aspect-ratio:{{ cardImgAr }};overflow:hidden;background:#ffffff;">
+              <img src="assets/sale-ems.jpg" alt="Fotografija: EMS masažer za lice sa toplotom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:{{ infoGap }};">
+            <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8f86;">Masažeri</span>
+            <span style="font-size:{{ cardTitleFs }};font-weight:600;line-height:1.3;letter-spacing:-.01em;">EMS masažer za lice sa toplotom</span>
+            <p style="margin:0;font-size:{{ cardDescFs }};line-height:1.5;color:#5f675f;text-wrap:pretty;">Mikrostruje i toplota podižu konture i poboljšavaju cirkulaciju. Pet nivoa jačine.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:6px;">
+              <span style="font-size:16px;font-weight:700;">4.290 RSD</span>
+              <button onClick="{{ pick9 }}" style="height:{{ btnH }};padding:0 {{ btnPad }};border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;" style-hover="background:#bcd6b4;">Stavi u korpu</button>
+            </div>
+            </div>
+          </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontakt" style="margin-top:96px;background:#ffffff;border-top:1px solid #ebe5d6;">
+  <div style="position:relative;max-width:none;margin:0 auto;padding:56px 28px 110px;display:flex;flex-wrap:wrap;align-items:center;gap:32px;">
+    <img src="assets/sticker-vidimo.png" alt="Vidimo se opet!" style="order:2;flex:0 0 auto;margin-left:auto;width:clamp(160px,18vw,240px);height:auto;transform:rotate(-6deg);mix-blend-mode:multiply;pointer-events:none;">
+    <div style="order:1;flex:1 1 640px;max-width:860px;display:flex;flex-wrap:wrap;gap:36px 32px;align-items:flex-start;">
+      <div style="flex:1.4 1 220px;display:flex;flex-direction:column;gap:14px;">
+        <span style="display:flex;align-items:flex-end;font-weight:700;font-size:22px;letter-spacing:-.03em;line-height:1;height:38px;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid #e0d8c6;box-sizing:content-box;"><svg width="22" height="28" viewBox="0 0 24 30" fill="none" style="flex:none;margin-right:8px;overflow:visible;"><g><animateTransform attributeName="transform" type="rotate" values="0 12 15;0 12 15;180 12 15" keyTimes="0;0.82;1" dur="4s" repeatCount="indefinite"></animateTransform><line x1="5" y1="3" x2="19" y2="3" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><line x1="5" y1="27" x2="19" y2="27" stroke="#7fae77" stroke-width="2" stroke-linecap="round"></line><path d="M7 4 C7 10 10.5 12.5 11.3 15 C10.5 17.5 7 20 7 26 M17 4 C17 10 13.5 12.5 12.7 15 C13.5 17.5 17 20 17 26" stroke="#7fae77" stroke-width="1.3" stroke-linecap="round"></path><polygon fill="#c9b48a" points="8.2,7 15.8,7 12,14"><animate attributeName="points" values="8.2,7 15.8,7 12,14;11.6,13.4 12.4,13.4 12,14;11.6,13.4 12.4,13.4 12,14" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon><line x1="12" y1="14" x2="12" y2="25.5" stroke="#c9b48a" stroke-width="0.9" stroke-dasharray="1.2 1.2"><animate attributeName="stroke-dashoffset" values="0;-12" dur="0.8s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.78;0.8;1" dur="4s" repeatCount="indefinite"></animate></line><polygon fill="#c9b48a" points="11.6,25.6 12.4,25.6 12,25.2"><animate attributeName="points" values="11.6,25.6 12.4,25.6 12,25.2;8.2,25.6 15.8,25.6 12,19.5;8.2,25.6 15.8,25.6 12,19.5" keyTimes="0;0.8;1" dur="4s" repeatCount="indefinite"></animate></polygon></g></svg><span style="color:#5f8a5a;">Eko</span>&nbsp;Korean Beauty</span>
+        <span style="font-size:13.5px;color:#5f675f;line-height:1.65;max-width:260px;text-wrap:pretty;">Kozmetika koja ti štedi vreme spremanja. Korejske maske, LED i alati na prirodnoj bazi. Dostava širom Srbije.</span>
+        <div style="display:flex;gap:8px;font-size:12.5px;font-weight:600;">
+          <a href="#" style="height:36px;padding:0 16px;border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;">Instagram</a>
+          <a href="#" style="height:36px;padding:0 16px;border:1px solid #9dbf94;border-radius:999px;display:flex;align-items:center;">TikTok</a>
+        </div>
+      </div>
+      <div style="flex:1 1 130px;display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1f2a22;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid #e0d8c6;height:38px;box-sizing:content-box;display:flex;align-items:flex-end;">Info</span>
+          <button onClick="{{ infoFaq }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Česta pitanja</button>
+          <button onClick="{{ infoRet }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Povraćaj</button>
+          <button onClick="{{ infoLoy }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Program lojalnosti</button>
+          <button onClick="{{ infoCon }}" style="padding:0;border:0;background:none;text-align:left;font:inherit;font-size:14px;line-height:1.3;color:#5f675f;cursor:pointer;" style-hover="color:#23382a;">Kontakt</button>
+        </div>
+        <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1f2a22;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid #e0d8c6;height:38px;box-sizing:content-box;display:flex;align-items:flex-end;">Kontakt</span>
+          <div style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">E-mail</span><a href="mailto:info@ekokoreanbeauty.rs" style="font-size:14px;line-height:1.4;color:#23382a;font-weight:600;">info@ekokoreanbeauty.rs</a></div>
+          <div style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">Telefon / Viber</span><a href="tel:+381641234567" style="font-size:14px;line-height:1.4;color:#23382a;font-weight:600;">+381 64 123 4567</a></div>
+          <div style="display:flex;flex-direction:column;gap:3px;"><span style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a8f86;">Centrala</span><span style="font-size:14px;line-height:1.4;color:#23382a;font-weight:600;">Bulevar kralja Aleksandra 128, 11000 Beograd</span></div>
+        </div>
+    </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:80;background:rgba(20,18,17,.55);display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div onClick="{{ stop }}" style="position:relative;display:flex;gap:0;background:#ffffff;border-radius:22px;max-height:calc(100vh - 48px);max-width:760px;width:100%;flex-wrap:wrap;overflow:auto;">
+        <div style="position:relative;flex:1 1 300px;aspect-ratio:9/16;max-height:calc(100vh - 48px);background:repeating-linear-gradient(135deg,#faf6ec 0 10px,#f4eee0 10px 20px);border-radius:18px;">
+          <div style="position:absolute;top:12px;left:12px;right:12px;height:2px;background:rgba(31,42,34,.15);">
+            <div style="height:100%;background:#1f2a22;width:{{ progress }}%;"></div>
+          </div>
+          <span style="position:absolute;top:26px;left:12px;font-size:12px;font-weight:700;">{{ mv.handle }}</span>
+          <span style="position:absolute;top:26px;right:12px;font-size:11px;font-weight:600;color:#5f675f;">▶ {{ mv.views }}</span>
+          <span style="position:absolute;top:50%;left:0;right:0;text-align:center;font:11px ui-monospace,Menlo,monospace;color:#a9a593;">influencer video 9:16</span>
+          <span style="position:absolute;left:14px;right:14px;bottom:16px;font-size:13px;line-height:1.4;color:#3c4a3f;">{{ mv.caption }}</span>
+          <button onClick="{{ prevVideo }}" aria-label="Prethodni" style="position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:50%;background:#ffffff;box-shadow:0 2px 10px rgba(0,0,0,.1);">←</button>
+        </div>
+        <div style="flex:1 1 260px;padding:28px;display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a8f86;">Proizvod iz videa</span>
+          <div style="aspect-ratio:1/1;background:repeating-linear-gradient(135deg,#fbf7ee 0 10px,#f6f0e3 10px 20px);border-radius:18px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;font:11px ui-monospace,Menlo,monospace;color:#a9a593;">product shot</div>
+          <span style="font-size:16px;line-height:1.4;font-weight:500;">{{ mv.product }}</span>
+          <span style="font-size:16px;font-weight:700;">{{ mv.price }}</span>
+          <button onClick="{{ mv.onAdd }}" style="height:48px;border-radius:999px;border:0;background:#cfe3c9;color:#23382a;font-size:14px;font-weight:600;margin-top:auto;" style-hover="background:#3a3533;">Stavi u korpu</button>
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#5f675f;">
+            <span>{{ modalPos }}</span>
+            <button onClick="{{ nextVideo }}" style="border:0;background:none;padding:0;font-size:12.5px;font-weight:600;color:#1f2a22;">Sledeći video →</button>
+          </div>
+        </div>
+        <button onClick="{{ closeModal }}" aria-label="Zatvori" style="position:absolute;top:10px;right:10px;width:34px;height:34px;border:0;background:#ffffff;font-size:18px;">✕</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ orderOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;right:20px;top:84px;z-index:95;width:min(400px,calc(100vw - 40px));max-height:calc(100vh - 110px);overflow-y:auto;overflow-x:hidden;box-sizing:border-box;background:#ffffff;border:1px solid #e0d8c6;border-radius:22px 6px 22px 22px;box-shadow:0 24px 60px -20px rgba(31,42,34,.35);padding:22px;display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:16px;font-weight:700;">Korpa ({{ cartCount }})</span>
+        <button onClick="{{ closeOrder }}" aria-label="Zatvori" style="width:32px;height:32px;border:0;border-radius:50%;background:#f4eee0;font-size:15px;">✕</button>
+      </div>
+      <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;padding:4px 0 6px;">
+          <span style="font-size:14px;color:#5f675f;">Korpa je prazna.</span>
+          <a href="shop.html" style="height:42px;padding:0 20px;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:13px;font-weight:700;display:flex;align-items:center;">Idi u shop</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ orderForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitOrder }}" style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+          <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="1">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:#fbf7ee;border-radius:14px;min-width:0;">
+              <span style="flex:none;width:52px;height:52px;border-radius:50%;overflow:hidden;border:1px solid #e0d8c6;background-color:#ffffff;background-position:center;background-size:cover;background-repeat:no-repeat;background-image:{{ ci.bg }};"></span>
+              <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;"><span style="font-size:13px;line-height:1.3;">{{ ci.name }}</span><span style="font-size:12px;color:#868a80;">{{ ci.price }} / kom</span><button type="button" onClick="{{ ci.onRemove }}" style="align-self:flex-start;border:0;background:none;padding:0;font-size:11.5px;color:#868a80;text-decoration:underline;cursor:pointer;">Ukloni</button></div>
+              <div style="display:flex;align-items:center;gap:6px;"><button type="button" onClick="{{ ci.onDec }}" style="width:28px;height:28px;border:1px solid #e0d8c6;border-radius:50%;background:#ffffff;">−</button><span style="min-width:14px;text-align:center;font-weight:700;font-size:13px;">{{ ci.qty }}</span><button type="button" onClick="{{ ci.onInc }}" style="width:28px;height:28px;border:1px solid #e0d8c6;border-radius:50%;background:#ffffff;">+</button></div>
+            </div>
+          </sc-for>
+          <div style="display:flex;flex-direction:column;gap:6px;padding:4px 4px 2px;font-size:13px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:#5f675f;">Proizvodi ({{ cartCount }} kom)</span><span>{{ lineTotal }}</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:#5f675f;">Dostava PTT (Post Express)</span><span>{{ shipLabel }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:8px;margin-top:2px;border-top:1px solid #ebe5d6;"><span style="font-weight:700;">Ukupno za plaćanje</span><span style="font-size:18px;font-weight:700;">{{ grandTotal }}</span></div>
+          </div>
+          <input type="text" required placeholder="Ime i prezime" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <input type="tel" required placeholder="Broj telefona" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <input type="text" required placeholder="Adresa (ulica i broj)" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <input type="text" required placeholder="Grad i poštanski broj" style="height:44px;border:1px solid #e0d8c6;border-radius:12px;padding:0 14px;font-size:14px;background:#ffffff;outline:none;width:100%;box-sizing:border-box;min-width:0;">
+          <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:#eef5ea;border-radius:12px;font-size:12.5px;line-height:1.45;color:#23382a;"><span style="font-weight:700;">₍✓₎</span><span>Plaćanje pouzećem, kuriru pri preuzimanju. Isporuka 1–2 radna dana.</span></div>
+          <button type="submit" style="height:48px;border:0;border-radius:999px;background:#cfe3c9;color:#23382a;font-size:14px;font-weight:700;" style-hover="background:#bcd6b4;">Završi naručivanje</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ orderDone }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;padding:8px 0;">
+          <span style="width:44px;height:44px;border-radius:50%;background:#cfe3c9;color:#23382a;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;">✓</span>
+          <span style="font-size:18px;font-weight:700;">Porudžbina je primljena</span>
+          <span style="font-size:13.5px;color:#5f675f;line-height:1.5;">Pozvaćemo te radi potvrde. Plaćaš kuriru kad paket stigne.</span>
+          <button onClick="{{ closeOrder }}" style="height:42px;padding:0 20px;border:1px solid #9dbf94;border-radius:999px;background:#ffffff;font-size:13px;font-weight:600;white-space:nowrap;">Nastavi kupovinu</button>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ infoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeInfo }}" style="position:fixed;inset:0;z-index:98;background:rgba(31,42,34,.4);display:flex;align-items:center;justify-content:center;padding:20px;">
+      <div onClick="{{ stop }}" style="position:relative;width:min(460px,100%);max-height:calc(100vh - 40px);overflow-y:auto;box-sizing:border-box;background:#ffffff;border-radius:22px;box-shadow:0 30px 70px -25px rgba(0,0,0,.4);padding:28px;display:flex;flex-direction:column;gap:16px;">
+        <button onClick="{{ closeInfo }}" aria-label="Zatvori" style="position:absolute;top:14px;right:14px;width:34px;height:34px;border:0;border-radius:50%;background:#f1f5ef;font-size:15px;">✕</button>
+        <span style="font-size:22px;font-weight:700;letter-spacing:-.02em;padding-right:40px;">{{ info.title }}</span>
+        <div style="display:flex;flex-direction:column;">
+          <sc-for list="{{ info.items }}" as="it" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-top:1px solid #edf1ea;">
+              <span style="font-size:14px;font-weight:700;color:#23382a;">{{ it.h }}</span>
+              <span style="font-size:13.5px;color:#5f675f;line-height:1.55;">{{ it.t }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:90;background:#cfe3c9;color:#23382a;font-size:13px;padding:13px 22px;border-radius:999px;display:flex;gap:14px;align-items:center;box-shadow:0 8px 30px rgba(0,0,0,.18);">
+      <span>{{ toastText }}</span>
+      <button type="button" onClick="{{ openCart }}" style="border:0;background:none;padding:0;color:#23382a;font-weight:700;border-bottom:1px solid #23382a;font-size:13px;cursor:pointer;">Korpa ({{ cartCount }})</button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;videoPlacement&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Posle rasprodaje&quot;,&quot;Odmah posle hero&quot;],&quot;default&quot;:&quot;Posle rasprodaje&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showCountdown&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { cart: 0, toast: null, menu: null, modal: null, progress: 0, ann: 0, now: Date.now(), subscribed: false, shock: false, orderOpen: false, orderItem: null, orderDone: false, qty: 1 };
+  railRef = React.createRef();
+  saleEnd = Date.now() + (2 * 86400 + 14 * 3600 + 22 * 60) * 1000;
+
+  products = [
+    { brand: 'Mini LED', name: 'LED maska za ispod očiju · crvena svetlost', price: '3.490 RSD', old: '4.990 RSD', off: '−30%', tag: '5,2M pregleda' },
+    { brand: 'Korejske maske', name: 'Kolagen hidrogel maska · set 4 kom', price: '1.990 RSD', old: '2.490 RSD', off: '−20%', tag: 'Viralno' },
+    { brand: 'Gua sha', name: 'Gua sha od ruževog kvarca', price: '1.590 RSD', old: '1.990 RSD', off: '−20%', tag: 'Bestseler' },
+    { brand: 'Masažeri', name: 'EMS masažer za lice sa toplotom', price: '4.290 RSD', old: '5.490 RSD', off: '−22%', tag: 'Viralno' },
+    { brand: 'Roleri', name: 'Dupli roler od žada', price: '1.390 RSD', old: '1.690 RSD', off: '−18%', tag: '2,1M pregleda' },
+    { brand: 'Korejske maske', name: 'Centela umirujuće sheet maske · 10 kom', price: '1.790 RSD', old: '2.190 RSD', off: '−18%', tag: 'Bestseler' }
+  ];
+
+  newProducts = [
+    { brand: 'Mini LED', name: 'Mini LED flasteri za oči · 3 svetla', price: '3.990 RSD', tag: 'Trend' },
+    { brand: 'LED masažeri', name: 'LED roler za lice · crveno + plavo svetlo', price: '2.890 RSD', tag: '1,9M pregleda' },
+    { brand: 'Gua sha', name: 'Gua sha od ametista sa zarezom', price: '1.790 RSD', tag: 'Novo' },
+    { brand: 'Korejske maske', name: 'Noćna maska sa pirinčem i probioticima', price: '1.490 RSD', tag: 'Viralno' },
+    { brand: 'Roleri', name: 'Ledeni roler od kristala za jutarnje otoke', price: '1.690 RSD', tag: 'Trend' },
+    { brand: 'Masažeri', name: 'Mikrostrujni masažer za podizanje lica', price: '5.990 RSD', tag: 'Novo u Srbiji' }
+  ];
+
+  videos = [
+    { handle: '@milica.skin', views: '5,2M', caption: 'Mini LED ispod očiju 10 min dnevno — posle 2 nedelje', product: 'Mini LED maska za oči', price: '3.490 RSD' },
+    { handle: '@glowsasa', views: '1,4M', caption: 'Kolagen maska preko noći, jutro posle 😮', product: 'Kolagen hidrogel maska', price: '1.990 RSD' },
+    { handle: '@jelena.beauty', views: '890K', caption: 'Gua sha tehnika za oticanje u 3 poteza', product: 'Gua sha od ruževog kvarca', price: '1.590 RSD' },
+    { handle: '@ana.routine', views: '3,2M', caption: 'EMS masažer — da li zaista podiže konture?', product: 'EMS masažer za lice', price: '4.290 RSD' },
+    { handle: '@teodora.mua', views: '640K', caption: 'Ledeni roler pre šminke, test', product: 'Ledeni kristalni roler', price: '1.690 RSD' },
+    { handle: '@kosa.i.koza', views: '1,7M', caption: 'LED roler: crveno ili plavo svetlo?', product: 'LED roler za lice', price: '2.890 RSD' },
+    { handle: '@nina.glow', views: '520K', caption: 'Sheet maska + roler od žada = spa kod kuće', product: 'Dupli roler od žada', price: '1.390 RSD' },
+    { handle: '@vanjaskincare', views: '980K', caption: 'Moja večernja rutina sa korejskim maskama', product: 'Centela sheet maske · 10 kom', price: '1.790 RSD' }
+  ];
+
+  menus = {
+    Maske: [
+      { title: 'Korejske maske', links: ['Sheet maske', 'Hidrogel maske', 'Kolagen maske', 'Noćne maske', 'Maske za oči'] },
+      { title: 'Po potrebi', links: ['Hidratacija', 'Umirivanje', 'Sjaj', 'Pore', 'Anti-age'] }
+    ],
+    'LED i masažeri': [
+      { title: 'LED', links: ['Mini LED za oči', 'LED maske za lice', 'LED roleri', 'LED masažeri'] },
+      { title: 'Masažeri', links: ['EMS masažeri', 'Mikrostrujni', 'Sa toplotom', 'Vibracioni'] }
+    ],
+    'Gua sha i roleri': [
+      { title: 'Gua sha spatule', links: ['Ružin kvarc', 'Žad', 'Ametist', 'Obsidijan'] },
+      { title: 'Roleri', links: ['Roleri od žada', 'Roleri od kvarca', 'Ledeni roleri', 'Setovi'] }
+    ]
+  };
+
+  componentDidMount() {
+    try { const c = JSON.parse(localStorage.getItem('ekb-cart') || '[]'); if (Array.isArray(c)) this.setState({ items: c }); } catch (e) {}
+    this.onStore = (e) => { if (e.key === 'ekb-cart') { try { this.setState({ items: JSON.parse(e.newValue || '[]') }); } catch (er) {} } };
+    window.addEventListener('storage', this.onStore);
+    this.onResize = () => { const m = window.innerWidth < 760; if (m !== this.state.mob) this.setState({ mob: m }); };
+    this.onResize(); window.addEventListener('resize', this.onResize);
+    this.tick = setInterval(() => this.setState(s => ({ now: Date.now(), ann: Math.floor(Date.now() / 4000) % 2 })), 1000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.onStore);
+    window.removeEventListener('resize', this.onResize); clearInterval(this.tick); clearInterval(this.play); clearTimeout(this.tt); }
+
+  add = (name) => {
+    this.setState(s => ({ cart: s.cart + 1, toast: name }));
+    clearTimeout(this.tt);
+    this.tt = setTimeout(() => this.setState({ toast: null }), 2600);
+  };
+
+  infoData = {
+    faq: { title: 'Česta pitanja', items: [
+      { h: 'Kako plaćam?', t: 'Pouzećem, kuriru pri preuzimanju paketa. Nije potrebna kartica ni registracija.' },
+      { h: 'Koliko traje dostava?', t: 'Isporuka je 1–2 radna dana preko Post Expressa. Porudžbine do 14h šaljemo isti dan.' },
+      { h: 'Koliko košta dostava?', t: '390 RSD, a besplatna je za porudžbine preko 3.000 RSD.' },
+      { h: 'Da li su proizvodi originalni?', t: 'Da. Sve nabavljamo direktno od proverenih distributera korejske kozmetike.' }
+    ] },
+    ret: { title: 'Povraćaj', items: [
+      { h: 'Rok za povraćaj', t: '14 dana od prijema paketa, bez navođenja razloga.' },
+      { h: 'Uslovi', t: 'Proizvod mora biti neotvoren i u originalnom pakovanju. Otvorene maske ne možemo primiti iz higijenskih razloga.' },
+      { h: 'Kako vraćam?', t: 'Pošalji nam poruku sa brojem porudžbine, a mi organizujemo preuzimanje. Novac vraćamo u roku od 5 dana.' }
+    ] },
+    loy: { title: 'Program lojalnosti', items: [
+      { h: '5% nazad u poenima', t: 'Za svaku kupovinu dobijaš poene u vrednosti od 5% iznosa porudžbine.' },
+      { h: 'Kako koristim poene?', t: 'Poeni se automatski oduzimaju od sledeće porudžbine. 1 poen = 100 RSD.' },
+      { h: 'Rođendanski poklon', t: 'Članovi liste dobijaju poklon na rođendan.' }
+    ] },
+    con: { title: 'Kontakt', items: [
+      { h: 'E-mail', t: 'info@ekokoreanbeauty.rs' },
+      { h: 'Telefon / Viber', t: '+381 64 123 4567, radnim danima 9–17h' },
+      { h: 'Instagram i TikTok', t: '@ekokoreanbeauty, odgovaramo na poruke istog dana.' }
+    ] }
+  };
+
+  imgFor = (name) => { const n = String(name).toLowerCase(); const m = [['pink brokoly','assets/posebna-ponuda.jpg'],['posebna','assets/posebna-ponuda.jpg'],['šok','assets/posebna-ponuda.jpg'],['ice jelly','assets/shop-icejelly.jpg'],['gold jelly','assets/shop-goldjelly.jpg'],['aloe jelly','assets/shop-alojelly.jpg'],['pink brokoly couple','assets/shop-pinkbrokoly.jpg'],['mini led','assets/sale-led.jpg'],['led maska za ispod','assets/sale-led.jpg'],['hidrogel maska','assets/sale-hydrogel.jpg'],['kolagen','assets/sale-hydrogel.jpg'],['centela','assets/shop-centella.jpg'],['lampa','assets/shop-lamp.jpg'],['flasteri','assets/shop-eyepatch.jpg'],['celo lice','assets/shop-ledmask.jpg'],['stona lampa','assets/shop-lamp.jpg'],['led roler','assets/shop-ledroller.jpg'],['žad','assets/shop-jade.jpg'],['gua sha','assets/sale-guasha.jpg'],['ems','assets/sale-ems.jpg']]; const f = m.find(([k]) => n.includes(k)); return f ? f[1] : ''; };
+
+  saveCart = (items) => { try { localStorage.setItem('ekb-cart', JSON.stringify(items)); } catch (e) {} };
+  setItems = (fn) => this.setState(st => { const items = fn(st.items || []); this.saveCart(items); return { items }; });
+  order = (name, price, img) => {
+    if (!name) { this.setState({ giftOpen: false, promoOpen: false, orderOpen: true, orderDone: false }); return; }
+    const im = img || this.imgFor(name);
+    this.setItems(items => { const i = items.findIndex(x => x.name === name); if (i >= 0) return items.map((x, j) => j === i ? { ...x, qty: Math.min(9, x.qty + 1) } : x); return [...items, { name, price, img: im, qty: 1 }]; });
+    this.setState({ toast: 'Dodato u korpu: ' + name, q: '' });
+    clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: null }), 2800);
+  };
+
+  openVideo = (i) => {
+    clearInterval(this.play);
+    this.setState({ modal: i, progress: 0 });
+    this.play = setInterval(() => {
+      this.setState(s => {
+        if (s.modal === null) return null;
+        if (s.progress >= 100) return { modal: (s.modal + 1) % this.videos.length, progress: 0 };
+        return { progress: s.progress + 1.25 };
+      });
+    }, 100);
+  };
+  closeModal = () => { clearInterval(this.play); this.setState({ modal: null }); };
+  scroll = (dir) => { const el = this.railRef.current; if (el) el.scrollBy({ left: dir * 488, behavior: 'smooth' }); };
+
+  renderVals() {
+    const s = this.state;
+    const left = Math.max(0, this.saleEnd - s.now) / 1000;
+    const pad = n => String(Math.floor(n)).padStart(2, '0');
+    const mvRaw = s.modal !== null ? this.videos[s.modal] : null;
+    const placement = this.props.videoPlacement ?? 'Posle rasprodaje';
+    return {
+      announce: s.ann ? 'Besplatna dostava za porudžbine preko 3.000 RSD' : '10% popusta na prvu porudžbinu uz kod EKO10',
+      cartCount: (s.items || []).reduce((a, x) => a + x.qty, 0),
+      openCart: () => this.setState({ orderOpen: true, orderDone: false, giftOpen: false, promoOpen: false, toast: null }),
+      cartEmpty: !s.orderDone && !(s.items || []).length,
+      cartItems: (s.items || []).map((x, i) => ({ ...x, bg: x.img ? 'url("' + x.img + '")' : 'none', onInc: () => this.setItems(it => it.map((y, j) => j === i ? { ...y, qty: Math.min(9, y.qty + 1) } : y)), onDec: () => this.setItems(it => it.map((y, j) => j === i ? { ...y, qty: Math.max(1, y.qty - 1) } : y)), onRemove: () => this.setItems(it => it.filter((y, j) => j !== i)) })),
+      navMenus: Object.keys(this.menus).map(k => ({ label: k, onEnter: () => this.setState({ menu: k }) })),
+      menuOpen: !!s.menu,
+      menuCols: s.menu ? this.menus[s.menu] : [],
+      closeMenu: () => this.setState({ menu: null }),
+      benefits: [
+        { n: '01', title: 'Samo viralni hitovi', text: 'Maske, LED uređaji i alati koje je TikTok proverio.', link: 'Viralni hitovi' },
+        { n: '02', title: 'Prirodno kamenje', text: 'Gua sha i roleri od pravog kvarca, žada i ametista.', link: 'O nama' },
+        { n: '03', title: 'Besplatna dostava', text: 'Za porudžbine preko 3.000 RSD, širom Srbije.', link: 'Uslovi' },
+        { n: '04', title: 'Isporuka za 1–2 dana', text: 'Pošiljke šaljemo istog dana do 14h.', link: 'Dostava' },
+        { n: '05', title: 'Poeni za svaku kupovinu', text: '5% vrednosti vraćamo kao poene za sledeću porudžbinu.', link: 'Program lojalnosti' },
+        { n: '06', title: 'Poklon kartica', text: 'Za svaki povod, u iznosu koji izabereš.', link: 'Izaberi iznos' }
+      ],
+      showCountdown: this.props.showCountdown ?? true,
+      cd: { d: pad(left / 86400), h: pad((left % 86400) / 3600), m: pad((left % 3600) / 60), s: pad(left % 60) },
+      products: this.products.map(p => ({ ...p, onAdd: () => this.order(p.name, p.price) })),
+      videoOrder: placement === 'Odmah posle hero' ? 2 : 7,
+      newProducts: this.newProducts.map(p => ({ ...p, onAdd: () => this.order(p.name, p.price) })),
+      shockLocked: !s.shock,
+      shockUnlocked: s.shock,
+      unlockShock: e => { e.preventDefault(); this.setState({ shock: true }); },
+      addShock: () => this.order('Šok ponuda: Mini LED maska + gua sha set', '2.490 RSD'),
+      railRef: this.railRef,
+      scrollLeft: () => this.scroll(-1),
+      scrollRight: () => this.scroll(1),
+      videos: this.videos.map((v, i) => ({ ...v, onOpen: () => this.openVideo(i), onAdd: () => this.order(v.product, v.price) })),
+      modalOpen: !!mvRaw,
+      mv: mvRaw ? { ...mvRaw, onAdd: () => { this.closeModal(); this.order(mvRaw.product, mvRaw.price); } } : {},
+      modalPos: mvRaw ? (s.modal + 1) + ' / ' + this.videos.length : '',
+      progress: s.progress,
+      closeModal: this.closeModal,
+      stop: e => e.stopPropagation(),
+      nextVideo: () => this.openVideo((s.modal + 1) % this.videos.length),
+      prevVideo: () => this.openVideo((s.modal - 1 + this.videos.length) % this.videos.length),
+      pick0: () => this.order("Kolagen hidrogel maska · set 4 kom", "1.990 RSD", "assets/sale-hydrogel.jpg"),
+      pick1: () => this.order("Centela sheet maske · 10 kom", "1.790 RSD", "assets/shop-centella.jpg"),
+      pick2: () => this.order("LED lampa za lice sa stalkom", "6.990 RSD", "assets/shop-lamp.jpg"),
+      pick3: () => this.order("Ice jelly maska za oči", "1.490 RSD", "assets/shop-icejelly.jpg"),
+      pick4: () => this.order("Hidrogel flasteri za oči · 60 kom", "2.240 RSD", "assets/shop-eyepatch.jpg"),
+      pick5: () => this.order("LED maska za celo lice · 7 boja", "9.990 RSD", "assets/shop-ledmask.jpg"),
+      pick6: () => this.order("LED stona lampa za lice", "6.990 RSD", "assets/shop-lamp.jpg"),
+      pick7: () => this.order("Dupli roler od žada", "1.390 RSD", "assets/shop-jade.jpg"),
+      pick8: () => this.order("Gua sha od ruževog kvarca", "1.590 RSD", "assets/sale-guasha.jpg"),
+      pick9: () => this.order("EMS masažer za lice sa toplotom", "4.290 RSD", "assets/sale-ems.jpg"),
+      pick10: () => this.order("Mini LED maska za oči", "3.490 RSD", "assets/sale-led.jpg"),
+      pick12: () => this.order("Gold jelly maskice za oči · 60 kom", "2.490 RSD", "assets/shop-goldjelly.jpg"),
+      pick13: () => this.order("Aloe jelly maskice za oči · 60 kom", "2.190 RSD", "assets/shop-alojelly.jpg"),
+      pick11: () => this.order("PINK BROKOLY couple za petominutno delovanje", "1.890 RSD", "assets/shop-pinkbrokoly.jpg"),
+      ...(() => {
+        const line = (s.items || []).reduce((a, x) => a + (parseInt(String(x.price).replace(/\D/g, ''), 10) || 0) * x.qty, 0);
+        const ship = line >= 3000 || !line ? 0 : 390;
+        const fmt = n => n.toLocaleString('de-DE') + ' RSD';
+        return { lineTotal: fmt(line), shipLabel: ship ? fmt(ship) : 'Besplatno', grandTotal: fmt(line + ship) };
+      })(),
+      fav10: !!(s.favs || {})[10], fav10Not: !(s.favs || {})[10], tfav10: () => this.setState(st => ({ favs: { ...(st.favs || {}), [10]: !(st.favs || {})[10] } })),
+      fav11: !!(s.favs || {})[11], fav11Not: !(s.favs || {})[11], tfav11: () => this.setState(st => ({ favs: { ...(st.favs || {}), [11]: !(st.favs || {})[11] } })),
+      fav12: !!(s.favs || {})[12], fav12Not: !(s.favs || {})[12], tfav12: () => this.setState(st => ({ favs: { ...(st.favs || {}), [12]: !(st.favs || {})[12] } })),
+      fav13: !!(s.favs || {})[13], fav13Not: !(s.favs || {})[13], tfav13: () => this.setState(st => ({ favs: { ...(st.favs || {}), [13]: !(st.favs || {})[13] } })),
+      fav0: !!(s.favs || {})[0], fav0Not: !(s.favs || {})[0], tfav0: () => this.setState(st => ({ favs: { ...(st.favs || {}), [0]: !(st.favs || {})[0] } })),
+      fav1: !!(s.favs || {})[1], fav1Not: !(s.favs || {})[1], tfav1: () => this.setState(st => ({ favs: { ...(st.favs || {}), [1]: !(st.favs || {})[1] } })),
+      fav2: !!(s.favs || {})[2], fav2Not: !(s.favs || {})[2], tfav2: () => this.setState(st => ({ favs: { ...(st.favs || {}), [2]: !(st.favs || {})[2] } })),
+      fav3: !!(s.favs || {})[3], fav3Not: !(s.favs || {})[3], tfav3: () => this.setState(st => ({ favs: { ...(st.favs || {}), [3]: !(st.favs || {})[3] } })),
+      fav4: !!(s.favs || {})[4], fav4Not: !(s.favs || {})[4], tfav4: () => this.setState(st => ({ favs: { ...(st.favs || {}), [4]: !(st.favs || {})[4] } })),
+      fav5: !!(s.favs || {})[5], fav5Not: !(s.favs || {})[5], tfav5: () => this.setState(st => ({ favs: { ...(st.favs || {}), [5]: !(st.favs || {})[5] } })),
+      fav6: !!(s.favs || {})[6], fav6Not: !(s.favs || {})[6], tfav6: () => this.setState(st => ({ favs: { ...(st.favs || {}), [6]: !(st.favs || {})[6] } })),
+      fav7: !!(s.favs || {})[7], fav7Not: !(s.favs || {})[7], tfav7: () => this.setState(st => ({ favs: { ...(st.favs || {}), [7]: !(st.favs || {})[7] } })),
+      fav8: !!(s.favs || {})[8], fav8Not: !(s.favs || {})[8], tfav8: () => this.setState(st => ({ favs: { ...(st.favs || {}), [8]: !(st.favs || {})[8] } })),
+      fav9: !!(s.favs || {})[9], fav9Not: !(s.favs || {})[9], tfav9: () => this.setState(st => ({ favs: { ...(st.favs || {}), [9]: !(st.favs || {})[9] } })),
+      infoOpen: !!s.info,
+      info: this.infoData[s.info] || { title: '', items: [] },
+      infoFaq: () => this.setState({ info: 'faq' }),
+      infoRet: () => this.setState({ info: 'ret' }),
+      infoLoy: () => this.setState({ info: 'loy' }),
+      infoCon: () => this.setState({ info: 'con' }),
+      closeInfo: () => this.setState({ info: null }),
+      shopHeadCols: s.mob ? '1fr' : 'minmax(0,1fr) minmax(0,380px) minmax(0,1fr)',
+      catGap: s.mob ? '8px' : '20px 16px',
+      catWrap: s.mob ? 'nowrap' : 'wrap',
+      catFlex: s.mob ? '1 1 0' : 'none',
+      catSize: s.mob ? '56px' : '72px',
+      catWs: s.mob ? 'normal' : 'nowrap',
+      catLblH: s.mob ? '34px' : '36px',
+      catLblPad: s.mob ? '4px 6px' : '0 16px',
+      catLblFs: s.mob ? '10.5px' : '13px',
+      cardBasis: s.mob ? '100%' : '260px',
+      cardMax: s.mob ? '100%' : '420px',
+      cardDir: s.mob ? 'row' : 'column',
+      cardGap: s.mob ? '14px' : '12px',
+      cardAlign: s.mob ? 'flex-start' : 'stretch',
+      cardImgW: s.mob ? '112px' : '100%',
+      cardImgAr: s.mob ? '1 / 1' : '4 / 3',
+      infoGap: s.mob ? '5px' : '12px',
+      heartTop: s.mob ? '4px' : '10px',
+      heartRight: s.mob ? 'auto' : '10px',
+      heartLeft: s.mob ? '4px' : 'auto',
+      heartSize: s.mob ? '30px' : '38px',
+      cardTitleFs: s.mob ? '14.5px' : '17px',
+      cardDescFs: s.mob ? '12.5px' : '13.5px',
+      btnH: s.mob ? '36px' : '42px',
+      btnPad: s.mob ? '16px' : '22px',
+      rowWrap: s.mob ? 'wrap' : 'nowrap',
+      gridGap: s.mob ? '18px' : '28px 24px',
+      hdrWrap: s.mob ? 'wrap' : 'nowrap',
+      navPad: s.mob ? '12px 0' : '22px 0',
+      hdrMinH: s.mob ? '60px' : '72px',
+      navJustify: s.mob ? 'flex-start' : 'center',
+      navBasis: s.mob ? '100%' : '0%',
+      navOrder: s.mob ? 3 : 0,
+      navBorder: s.mob ? '1px solid #ebe5d6' : '0',
+      orderOpen: s.orderOpen,
+      orderQuery: s.q || '',
+      onQuery: e => this.setState({ q: e.target.value }),
+      ...(() => {
+        const q = (s.q || '').trim().toLowerCase();
+        const all = [{"brand":"Korejske maske","name":"Kolagen hidrogel maska · set 4 kom","price":"1.990 RSD"},{"brand":"Korejske maske","name":"Centela sheet maske · 10 kom","price":"1.790 RSD"},{"brand":"Ice maske","name":"Ice jelly maska za oči","price":"1.490 RSD"},{"brand":"Jelly maske","name":"Gold jelly maskice za oči · 60 kom","price":"2.490 RSD"},{"brand":"Jelly maske","name":"Aloe jelly maskice za oči · 60 kom","price":"2.190 RSD"},{"brand":"LED uređaj","name":"Mini LED maska za oči","price":"3.490 RSD"},{"brand":"Najprodavanije","name":"PINK BROKOLY couple za petominutno delovanje","price":"1.890 RSD"},{"brand":"Gel maske","name":"Hidrogel flasteri za oči · 60 kom","price":"2.240 RSD"},{"brand":"LED uređaj","name":"LED maska za celo lice · 7 boja","price":"9.990 RSD"},{"brand":"LED uređaj","name":"LED stona lampa za lice","price":"6.990 RSD"},{"brand":"Roleri","name":"Dupli roler od žada","price":"1.390 RSD"},{"brand":"Gua sha","name":"Gua sha od ruževog kvarca","price":"1.590 RSD"},{"brand":"Masažeri","name":"EMS masažer za lice sa toplotom","price":"4.290 RSD"}];
+        const res = q ? all.filter(p => (p.brand + ' ' + p.name).toLowerCase().includes(q)).slice(0, 6) : [];
+        return {
+          searchResults: res.map(p => ({ ...p, onPick: () => this.order(p.name, p.price) })),
+          hasResults: res.length > 0,
+          noResults: !!q && res.length === 0
+        };
+      })(),
+      orderHasItem: !!s.orderItem,
+      orderHasImg: !!(s.orderItem && s.orderItem.img),
+      orderBg: s.orderItem && s.orderItem.img ? 'url("' + s.orderItem.img + '")' : 'none',
+      orderItem: s.orderItem || {},
+      qty: s.qty,
+      incQty: () => this.setState(st => ({ qty: Math.min(9, st.qty + 1) })),
+      decQty: () => this.setState(st => ({ qty: Math.max(1, st.qty - 1) })),
+      orderDone: s.orderDone,
+      orderForm: !s.orderDone && !!(s.items || []).length,
+      submitOrder: e => { e.preventDefault(); this.saveCart([]); this.setState({ orderDone: true, items: [] }); },
+      closeOrder: () => this.setState({ orderOpen: false }),
+      openOrderBlank: () => this.order(null),
+      toastOn: !!s.toast,
+      toastText: s.toast,
+      subscribed: s.subscribed,
+      subscribe: e => { e.preventDefault(); this.setState({ subscribed: true }); },
+      footerCols: [
+        { title: 'Info', links: ['Dostava i plaćanje', 'Povraćaj', 'Program lojalnosti', 'Kontakt', 'Blog'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
